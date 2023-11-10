@@ -1,6 +1,9 @@
 {config, pkgs, ... }:
 
 {
+  imports = [
+    ./terminals
+  ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
 
@@ -11,8 +14,8 @@
   };
 
   home.packages = with pkgs; [
+    firefox-wayland
     neofetch
-    kitty
   ];
   programs.starship.enable = true;
 
