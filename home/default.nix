@@ -3,6 +3,8 @@
 {
   imports = [
     ./terminals
+    ./helix.nix
+    ./lsp.nix
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
