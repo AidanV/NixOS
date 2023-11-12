@@ -18,8 +18,11 @@
   home.packages = with pkgs; [
     firefox-wayland
     neofetch
+    obsidian
+    bitwarden
+    discord
   ];
-  programs.starship.enable = true;
+  # programs.starship.enable = true;
 
   home.stateVersion = "23.05";
 
