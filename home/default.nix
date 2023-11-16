@@ -5,6 +5,8 @@
     ./terminals
     ./helix.nix
     ./lsp.nix
+    ./i3
+    # ./sway
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";

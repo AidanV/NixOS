@@ -7,7 +7,7 @@
       background_opacity = "0.9";
       dynamic_background_opacity = true;
       hide_window_decorations = true;
-      linux_display_server = "wayland";
+      # linux_display_server = "wayland";
     };
     theme = "Gruvbox Material Dark Soft";
   };
