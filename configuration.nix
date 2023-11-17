@@ -154,10 +154,17 @@
     wget
     curl
     helix
+    ncdu
   ];
 
   environment.variables.EDITOR = "vim";
 
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    fira-code
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
   #   enable = true; enableSSHSupport = true;

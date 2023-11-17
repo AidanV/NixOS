@@ -1,5 +1,6 @@
-{ ... }: 
-{
+{ pkgs, ... }: 
+let font = pkgs.fira-code;
+in {
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.kitty.enable
   programs.kitty = {
     enable = true;
@@ -11,6 +12,10 @@
     };
     shellIntegration.enableZshIntegration = true;
     theme = "Gruvbox Material Dark Soft";
+    font = {
+      package = font;
+      name = "FiraCode";
+    };
   };
 
 }

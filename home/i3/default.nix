@@ -2,6 +2,7 @@
 
 let mod = "Mod4";
 in {
+  imports = [ ];
   xsession =  {
     enable = true;
     windowManager.i3 = {
@@ -11,6 +12,9 @@ in {
         keybindings = lib.mkOptionDefault{
           # Rofi
           "${mod}+space" = "exec rofi -show run";
+
+          # Kill
+          "${mod}+q" = "kill";
 
           # Focus
           "${mod}+h" = "focus left";
