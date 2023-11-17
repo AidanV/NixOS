@@ -1,5 +1,10 @@
-{config, ...}:{
-  imports = [ ./kitty.nix ./tmux.nix ];
+{...}:{
+  imports = [ 
+    ./kitty 
+    ./tmux 
+    ./starship
+    ./zsh
+  ];
   home.sessionVariables = {
     TERMINAL = "kitty";
   };

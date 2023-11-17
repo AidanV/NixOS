@@ -25,7 +25,6 @@
     bitwarden
     discord
   ];
-  # programs.starship.enable = true;
 
   home.stateVersion = "23.05";
 

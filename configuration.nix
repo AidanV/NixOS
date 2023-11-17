@@ -132,8 +132,16 @@
 
   # Enable touchpad support (enabled default in most desktopManager). services.xserver.libinput.enable = true;
 
+
+  programs.zsh.enable = true;
+  environment.pathsToLink = [ "/share/zsh" ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.aidan = { isNormalUser = true; description = "aidan"; extraGroups = [ "networkmanager" "wheel" ]; 
+  users.users.aidan = { 
+    isNormalUser = true; 
+    description = "aidan"; 
+    extraGroups = [ "networkmanager" "wheel" ]; 
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -146,10 +154,10 @@
     wget
     curl
     helix
-    # helix.packages."${pkgs.system}".helix
   ];
 
   environment.variables.EDITOR = "vim";
+
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
   #   enable = true; enableSSHSupport = true;

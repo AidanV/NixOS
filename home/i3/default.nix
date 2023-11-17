@@ -9,6 +9,8 @@ in {
       config = {
         modifier = mod;
         keybindings = lib.mkOptionDefault{
+          # Rofi
+          "${mod}+space" = "exec rofi -show run";
 
           # Focus
           "${mod}+h" = "focus left";

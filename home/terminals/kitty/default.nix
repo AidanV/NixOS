@@ -1,4 +1,4 @@
-{ config, ... }: 
+{ ... }: 
 {
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.kitty.enable
   programs.kitty = {
@@ -9,6 +9,7 @@
       hide_window_decorations = true;
       # linux_display_server = "wayland";
     };
+    shellIntegration.enableZshIntegration = true;
     theme = "Gruvbox Material Dark Soft";
   };
 
