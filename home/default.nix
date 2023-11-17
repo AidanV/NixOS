@@ -3,9 +3,10 @@
 {
   imports = [
     ./terminals
-    ./helix.nix
-    ./lsp.nix
+    ./helix
+    ./lsp
     ./i3
+    ./rofi
     # ./sway
   ];
   home.username = "aidan";

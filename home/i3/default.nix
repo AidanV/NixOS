@@ -8,6 +8,20 @@ in {
       enable = true;
       config = {
         modifier = mod;
+        keybindings = lib.mkOptionDefault{
+
+          # Focus
+          "${mod}+h" = "focus left";
+          "${mod}+l" = "focus right";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+
+          # Move
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+l" = "move right";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+        };
       };
     };
   };
