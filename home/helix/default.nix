@@ -8,12 +8,11 @@
         line-number = "relative";
       };
     };
-    languages = {
-      language = [
-        {
-          name = "nix";
-        }
-      ];
-    };
+    # languages = {
+    #   language = [
+    #     { name = "nix"; }
+    #     { name = "haskell"; }
+    #   ];
+    # };
   };
 }

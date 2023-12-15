@@ -15,17 +15,20 @@
   };
 
   # Bootloader.
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/vda";
-    useOSProber = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;     
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = [ "ntfs" ];
   };
-  # boot.loader.systemd-boot.enable = true; boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary networking.proxy.default = "http://user:password@proxy:port/"; networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -48,6 +51,8 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
+
   # sway
   # security.polkit.enable = true;
   # environment.sessionVariables = rec {
@@ -63,18 +68,18 @@
   # environment.pathsToLink = [ "/libexec" ];
 
   # # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    desktopManager = {
-      xterm.enable = false;
-    };
-    displayManager = {
-      gdm.enable = true;
-      defaultSession = "none+i3";
-    };
-    windowManager.i3.enable = true;
-  };
+  # services.xserver = {
+  #   enable = true;
+  #   layout = "us";
+  #   desktopManager = {
+  #     xterm.enable = false;
+  #   };
+  #   displayManager = {
+  #     gdm.enable = true;
+  #     defaultSession = "none+i3";
+  #   };
+  #   windowManager.i3.enable = true;
+  # };
   #   displayManager = {
   #     defaultSession = "none+i3";
   #   };
@@ -102,14 +107,17 @@
   # Hyprland
 
   # GNOME
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true; 
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true; 
+  services.xserver.desktopManager.gnome.enable = true;
 
   # # Configure keymap in X11
-  # services.xserver = { layout = "us"; xkbVariant = ""; };
+  services.xserver = { 
+    layout = "us"; 
+    xkbVariant = ""; 
+  };
   # GNOME
 
   # Enable CUPS to print documents.
@@ -149,15 +157,15 @@
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default. wget
-    git
+    vim 
+    gitFull
     wget
     curl
     helix
     ncdu
   ];
 
-  environment.variables.EDITOR = "vim";
+  environment.variables.EDITOR = "helix";
 
   fonts.packages = with pkgs; [
     noto-fonts
