@@ -8,9 +8,9 @@ programs.waybar = {
             height = 20;
             layer = "top";
             modules-left = ["custom/launcher" "cpu" "memory" "custom/weather" "hyprland/workspaces"];
-            modules-center = ["mpris"];
-            modules-right = ["network" "pulseaudio" "backlight" "battery" "clock" "tray" "hyprland/language" "custom/wallpaper" "custom/power-menu"];
-
+            # modules-center = ["mpris"];
+            modules-right = ["network" "pulseaudio" "backlight" "battery" "clock" "tray" "custom/power-menu"];
+# "hyprland/language" "custom/wallpaper"
           "hyprland/workspaces" = {
             format = "{name}";
             all-outputs = true;
@@ -199,7 +199,7 @@ programs.waybar = {
           }
 
           window#waybar.hidden {
-            opacity: 0.1;
+            opacity: 0.0;
           }
 
           #window {

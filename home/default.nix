@@ -31,11 +31,13 @@
     obsidian
     bitwarden
     discord
+    libsForQt5.dolphin
     swww
     pavucontrol
     swaylock-effects swayidle wlogout swaybg
     hyprland-protocols
     wl-clipboard
+    bluez
   ];
 
   home.stateVersion = "23.05";

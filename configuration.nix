@@ -182,7 +182,7 @@
     noto-fonts-emoji
     fira-code
     font-awesome
-    otf-font-awesome
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ];})
   ];
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
