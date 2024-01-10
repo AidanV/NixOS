@@ -7,6 +7,8 @@
     ./lsp
     ./i3
     ./rofi
+    ./hyprland
+    ./waybar
     # ./sway
   ];
   home.username = "aidan";
@@ -29,6 +31,11 @@
     obsidian
     bitwarden
     discord
+    swww
+    pavucontrol
+    swaylock-effects swayidle wlogout swaybg
+    hyprland-protocols
+    wl-clipboard
   ];
 
   home.stateVersion = "23.05";

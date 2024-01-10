@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual 
 # (accessible by running ‘nixos-help’).
 
-{ config, pkgs, callPackage, ... }:
+{ config, inputs, pkgs, callPackage, ... }:
 
 { imports =
     [ # Include the results of the hardware scan.
@@ -100,24 +100,32 @@
   #   WLR_NO_HARDWARE_CURSORS = "1";
   #   WLR_RENDERER_ALLOW_SOFTWARE = "1";
   # };
-  # programs.hyprland.enable = true;
-  # services.xserver = {
+  # programs.hyprland =  {
   #   enable = true;
+  #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   # };
+
+  # programs.waybar.enable = true;
+
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    libinput.enable = true;
+  };
   # Hyprland
 
   # GNOME
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
-  # # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true; 
-  services.xserver.desktopManager.gnome.enable = true;
+  # # # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true; 
+  # services.xserver.desktopManager.gnome.enable = true;
 
-  # # Configure keymap in X11
-  services.xserver = { 
-    layout = "us"; 
-    xkbVariant = ""; 
-  };
+  # # # Configure keymap in X11
+  # services.xserver = { 
+  #   layout = "us"; 
+  #   xkbVariant = ""; 
+  # };
   # GNOME
 
   # Enable CUPS to print documents.
@@ -163,6 +171,7 @@
     curl
     helix
     ncdu
+    brightnessctl
   ];
 
   environment.variables.EDITOR = "helix";
@@ -172,6 +181,8 @@
     noto-fonts-cjk
     noto-fonts-emoji
     fira-code
+    font-awesome
+    otf-font-awesome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
