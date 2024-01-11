@@ -172,12 +172,7 @@ programs.waybar = {
 
           "custom/launcher" = {
             format = "󱄅";
-            on-click = "rofi -show drun &";
-          };
-
-          "custom/wallpaper" = {
-            format = "󰸉";
-            on-click = "bash ~/.config/waybar/scripts/changewallpaper.sh";
+            on-click = "rofi -show drun";
           };
           };
           };
