@@ -4,8 +4,8 @@
       enable = true;
       font.name = "TeX Gyre Adventor 10";
       theme = {
-        name = "Juno";
-        package = pkgs.juno-theme;
+        name = "Gruvbox-GTK-Theme";#"Juno";
+        package = pkgs.gruvbox-gtk-theme;#pkgs.juno-theme;
       };
       iconTheme = {
         name = "Papirus-Dark";
@@ -31,8 +31,18 @@
       };
 
    };
+
+  xdg.configFile."swaync/style.css".source = ./swaync.css;
+  xdg.configFile."swaync/config.json".source = ./swaync.json;
+
   wayland.windowManager.hyprland = {
     enable = true;
+    # config.exec_once = [
+    #   "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+    #   "${pkgs.swaynotificationcenter}/bin/swaync"
+    #   "${pkgs.waybar}/bin/waybar"
+    #   "${pkgs.swww}/bin/swww init & sleep 0.1 & ${pkgs.swww}/bin/swww img ./wallpaper.png"
+    # ];
     extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor=,preferred,auto,auto
@@ -41,7 +51,7 @@
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
         # Execute your favorite apps at launch
-        exec-once = waybar & swww init & sleep 0.1 & swww img ./wallpaper.png
+        exec-once = waybar & swww init & sleep 0.1 & swww img ./wallpaper.png & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP & swaync
         # exec-once = swww init & sleep 0.1 & swww img ./wallpaper.png
         # exec-once = waybar & hyprpaper & firefox
 
@@ -139,7 +149,7 @@
 
         misc {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
-          force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
+          force_default_wallpaper = 0 # Set to 0 to disable the anime mascot wallpapers
         }
 
         # Example per-device config
@@ -168,6 +178,11 @@
         bind = $mainMod, R, exec, $menu
         bind = $mainMod, P, pseudo, # dwindle
         bind = $mainMod, J, togglesplit, # dwindle
+
+        # Notifications
+        bind = $mainMod, N, exec, swaync-client -t
+        bind = $mainMod, B, exec, ~/.config/hypr/battery_notif.sh
+        bind = $mainMod, T, exec, ~/.config/hypr/time_notif.sh
 
         # Move focus with mainMod + arrow keys
         bind = $mainMod, left, movefocus, l

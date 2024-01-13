@@ -35,9 +35,10 @@
     swww
     pavucontrol
     pamixer
-    swaylock-effects swayidle wlogout swaybg
+    swaylock-effects swayidle wlogout swaybg swaynotificationcenter
     hyprland-protocols
     wl-clipboard
+    libnotify
   ];
 
   home.stateVersion = "23.05";

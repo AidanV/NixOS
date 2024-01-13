@@ -106,19 +106,46 @@
   # };
   programs.dconf.enable = true;
 
+
   # programs.waybar.enable = true;
+  programs.hyprland.enable = true;
 
   services.xserver = {
     enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+        # settings = {
+        #   General.DisplayServer = "wayland";
+        # };
+      };
+      # defaultSession = "gnome";
     };
+  
+
     libinput.enable = true;
   };
+  programs.xwayland.enable = true;
+
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "Hyprland";
+  #       user = "aidan";
+  #     };
+  #   };
+  # };
+  # services.greetd = {
+  #   enable = true;
+  # };
+  
+  # services.xserver.libinput.enable = true;
 
   xdg.portal = {
       enable = true;
+      # wlr.enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
   # Hyprland

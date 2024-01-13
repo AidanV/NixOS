@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let 
-  themePath = ./nord-oneline.rasi;
+  themePath = ./config.rasi;
 
 in {
 
