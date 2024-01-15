@@ -4,8 +4,8 @@
       enable = true;
       font.name = "TeX Gyre Adventor 10";
       theme = {
-        name = "Gruvbox-GTK-Theme";#"Juno";
-        package = pkgs.gruvbox-gtk-theme;#pkgs.juno-theme;
+        name = "Adwaita-dark";#"Juno";
+        package = pkgs.gnome.gnome-themes-extra;#pkgs.juno-theme;
       };
       iconTheme = {
         name = "Papirus-Dark";
@@ -45,13 +45,15 @@
     # ];
     extraConfig = ''
         # See https://wiki.hyprland.org/Configuring/Monitors/
-        monitor=,preferred,auto,auto
+        # monitor=,preferred,auto,auto
+        monitor=,highres,auto,auto
 
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
         # Execute your favorite apps at launch
-        exec-once = waybar & swww init & sleep 0.1 & swww img ./wallpaper.png & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP & swaync
+        exec-once = swww init & sleep 0.1 & swww img ./wallpaper.jpg & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP & swaync
+        # exec-once = waybar & swww init & sleep 0.1 & swww img ./wallpaper.png & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP & swaync
         # exec-once = swww init & sleep 0.1 & swww img ./wallpaper.png
         # exec-once = waybar & hyprpaper & firefox
 
@@ -60,7 +62,7 @@
 
         # Set programs that you use
         $terminal = kitty
-        $fileManager = dolphin
+        $fileManager = nautilus
         $menu = rofi -show drun
 
         # Some default env vars.
@@ -176,8 +178,11 @@
         bind = $mainMod, E, exec, $fileManager
         bind = $mainMod, V, togglefloating, 
         bind = $mainMod, R, exec, $menu
-        bind = $mainMod, P, pseudo, # dwindle
+        bind = $mainMod, W, exec, ~/.config/hypr/rofi_wifi_menu.sh
+        bind = $mainMod, P, exec, ~/.config/hypr/rofi_power_menu.sh
+        bind = $mainMod, D, pseudo, # dwindle
         bind = $mainMod, J, togglesplit, # dwindle
+
 
         # Notifications
         bind = $mainMod, N, exec, swaync-client -t
@@ -226,6 +231,8 @@
         bindm = $mainMod, mouse:272, movewindow
         bindm = $mainMod, mouse:273, resizewindow
 
+        bindle =,XF86MonBrightnessUp, exec, brightnessctl set 5%+
+        bindle =,XF86MonBrightnessDown, exec, brightnessctl set 5%-
     '';
   };
 }

@@ -28,10 +28,10 @@
   home.packages = with pkgs; [
     firefox-wayland
     neofetch
-    obsidian
+    # obsidian
     bitwarden
     discord
-    libsForQt5.dolphin
+    gnome.nautilus
     swww
     pavucontrol
     pamixer
