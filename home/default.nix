@@ -27,18 +27,21 @@
 
   home.packages = with pkgs; [
     firefox-wayland
+    floorp
     neofetch
     # obsidian
     bitwarden
     discord
     gnome.nautilus
     swww
+    eww-wayland
     pavucontrol
     pamixer
     swaylock-effects swayidle wlogout swaybg swaynotificationcenter
     hyprland-protocols
     wl-clipboard
     libnotify
+    gnome.gnome-calculator
   ];
 
   home.stateVersion = "23.05";
