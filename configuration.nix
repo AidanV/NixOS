@@ -62,16 +62,15 @@
   virtualisation.libvirtd.enable = true;
   # programs.virt-manager.enable = true;  
 
-  # GNOME
   services.xserver = { 
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    displayManager.sddm.wayland.enable = true;
+    desktopManager.plasma6.enable = true;
     libinput.enable = true;
     layout = "us"; 
-    xkbVariant = ""; 
+    xkb.variant = ""; 
   };
-  # GNOME
+  programs.dconf.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
