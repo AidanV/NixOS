@@ -57,61 +57,10 @@
 
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
-  # sway
-  # security.polkit.enable = true;
-  # environment.sessionVariables = rec {
-  #   # WLR_NO_HARDWARE_CURSORS = "1";
-  #   WLR_RENDERER_ALLOW_SOFTWARE = "1";
-  # };
-  # services.xserver = {
-  #   enable = true;
-  # };  
-  # sway
-
-  # i3
-  # environment.pathsToLink = [ "/libexec" ];
-
-  # # Enable the X11 windowing system.
-  # services.xserver = {
-  #   enable = true;
-  #   layout = "us";
-  #   desktopManager = {
-  #     xterm.enable = false;
-  #   };
-  #   displayManager = {
-  #     gdm.enable = true;
-  #     defaultSession = "none+i3";
-  #   };
-  #   windowManager.i3.enable = true;
-  # };
-  #   displayManager = {
-  #     defaultSession = "none+i3";
-  #   };
-  #   windowManager.i3 = {
-  #     enable = true;
-  #     extraPackages = with pkgs; [
-  #       dmenu
-  #       i3status
-  #       i3lock
-  #     ];
-  #   };
-  # };
-  # i3 end
 
 
   virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;  
-  # Hyprland
-  # virtualisation.vmware.guest.enable = true;
-  # environment.sessionVariables = rec {
-  #   WLR_NO_HARDWARE_CURSORS = "1";
-  #   WLR_RENDERER_ALLOW_SOFTWARE = "1";
-  # };
-  # programs.hyprland.enable = true;
-  # services.xserver = {
-  #   enable = true;
-  # };
-  # Hyprland
+  # programs.virt-manager.enable = true;  
 
   # GNOME
   services.xserver = { 
@@ -141,9 +90,6 @@
     # use the example session manager (no others are packaged yet so this is enabled by default, no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager). services.xserver.libinput.enable = true;
-
 
   programs.zsh.enable = true;
   environment.pathsToLink = [ "/share/zsh" ];

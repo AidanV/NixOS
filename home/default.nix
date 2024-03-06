@@ -5,20 +5,11 @@
     ./terminals
     ./helix
     ./lsp
+    ./git
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
 
-  programs.git = {
-    enable = true;
-    userName = "AidanV";
-    userEmail = "aidanvanduyne@gmail.com";
-    extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";
-    };
-  };
 
   home.packages = with pkgs; [
     firefox-wayland
@@ -28,6 +19,7 @@
     discord
     gnomeExtensions.blur-my-shell
     gnome.gnome-tweaks
+    gnome.gnome-boxes
     bibata-cursors
     papirus-icon-theme
     vscode
