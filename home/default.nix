@@ -7,6 +7,7 @@
     ./lsp
     ./i3
     ./rofi
+    ./nixvim
     # ./sway
   ];
   home.username = "aidan";
@@ -29,6 +30,11 @@
     obsidian
     bitwarden
     discord
+    gnomeExtensions.blur-my-shell
+    gnome.gnome-tweaks
+    bibata-cursors
+    papirus-icon-theme
+    vscode
   ];
 
   home.stateVersion = "23.05";

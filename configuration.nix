@@ -16,6 +16,8 @@
 
   # Bootloader.
   boot = {
+    resumeDevice = "/dev/nvme0n1p7";
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;     
       efi.canTouchEfiVariables = true;
@@ -50,6 +52,12 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
+  hardware.opengl.enable = true;
 
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
@@ -94,6 +102,9 @@
   # };
   # i3 end
 
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;  
   # Hyprland
   # virtualisation.vmware.guest.enable = true;
   # environment.sessionVariables = rec {
@@ -107,14 +118,18 @@
   # Hyprland
 
   # GNOME
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true; 
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true; 
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # # Configure keymap in X11
   services.xserver = { 
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    libinput.enable = true;
     layout = "us"; 
     xkbVariant = ""; 
   };
@@ -163,6 +178,7 @@
     curl
     helix
     ncdu
+    wl-clipboard
   ];
 
   environment.variables.EDITOR = "helix";
@@ -172,6 +188,9 @@
     noto-fonts-cjk
     noto-fonts-emoji
     fira-code
+    font-awesome
+    cantarell-fonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ];})
   ];
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
