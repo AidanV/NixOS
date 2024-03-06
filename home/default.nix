@@ -5,10 +5,6 @@
     ./terminals
     ./helix
     ./lsp
-    ./i3
-    ./rofi
-    ./nixvim
-    # ./sway
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
@@ -27,7 +23,7 @@
   home.packages = with pkgs; [
     firefox-wayland
     neofetch
-    obsidian
+    # obsidian
     bitwarden
     discord
     gnomeExtensions.blur-my-shell
