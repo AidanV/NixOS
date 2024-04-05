@@ -27,6 +27,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.extraHosts = "libvirt_guest";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -60,6 +61,7 @@
 
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;  
   # programs.virt-manager.enable = true;  
 
   # GNOME
@@ -80,6 +82,7 @@
   sound.enable = true; 
   hardware.pulseaudio.enable = false; 
   security.rtkit.enable = true; 
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true; 
     alsa.enable = true; 

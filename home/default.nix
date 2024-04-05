@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     firefox-wayland
+    opera
     neofetch
     # obsidian
     bitwarden
@@ -20,9 +21,11 @@
     gnomeExtensions.blur-my-shell
     gnome.gnome-tweaks
     gnome.gnome-boxes
+    pika-backup
     bibata-cursors
     papirus-icon-theme
     vscode
+    emacs
   ];
 
   home.stateVersion = "23.05";
