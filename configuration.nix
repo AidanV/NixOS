@@ -64,25 +64,55 @@
   virtualisation.spiceUSBRedirection.enable = true;  
   # programs.virt-manager.enable = true;  
 
-  # GNOME
   services.xserver = { 
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # displayManager.sddm.enable = true;
+    # displayManager.sddm.wayland.enable = true;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
     libinput.enable = true;
     layout = "us"; 
     xkbVariant = ""; 
   };
-  # GNOME
+
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
+
+  # Power
+  services.thermald.enable = true;
+  services.tlp = {
+    settings = {
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      START_CHARGE_THRESH_BAT0=75;
+      STOP_CHARGE_THRESH_BAT0=80;
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {                                                  
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "greeter";                                                  
+      }; 
+    };
+  };
 
   # Enable sound with pipewire.
   sound.enable = true; 
   hardware.pulseaudio.enable = false; 
   security.rtkit.enable = true; 
   security.polkit.enable = true;
+  security.pam.services.swaylock = {};
+  services.dbus.enable = true;
   services.pipewire = {
     enable = true; 
     alsa.enable = true; 
@@ -94,6 +124,8 @@
     #media-session.enable = true;
   };
 
+  programs.light.enable = true;
+
   programs.zsh.enable = true;
   environment.pathsToLink = [ "/share/zsh" ];
 
@@ -101,7 +133,7 @@
   users.users.aidan = { 
     isNormalUser = true; 
     description = "aidan"; 
-    extraGroups = [ "networkmanager" "wheel" ]; 
+    extraGroups = [ "networkmanager" "wheel" "video" ]; 
     shell = pkgs.zsh;
   };
 
@@ -116,7 +148,10 @@
     curl
     helix
     ncdu
+    nnn
+    pavucontrol
     wl-clipboard
+    swaylock
   ];
 
   environment.variables.EDITOR = "helix";

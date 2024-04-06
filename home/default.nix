@@ -6,6 +6,7 @@
     ./helix
     ./lsp
     ./git
+    ./sway
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
@@ -18,15 +19,26 @@
     # obsidian
     bitwarden
     discord
-    gnomeExtensions.blur-my-shell
+    # gnomeExtensions.blur-my-shell
     gnome.gnome-tweaks
     gnome.gnome-boxes
+    gnome.gnome-calculator
     pika-backup
     bibata-cursors
     papirus-icon-theme
     vscode
     emacs
   ];
+
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 24;
+    x11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+  };
 
   home.stateVersion = "23.05";
 
