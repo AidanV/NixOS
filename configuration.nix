@@ -83,6 +83,7 @@
   # Power
   services.thermald.enable = true;
   services.tlp = {
+    enable = true;
     settings = {
       CPU_BOOST_ON_AC = 1;
       CPU_BOOST_ON_BAT = 0;
@@ -106,9 +107,35 @@
     };
   };
 
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      "asus".config = ''
+      (defsrc
+        grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+        tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+        caps a    s    d    f    g    h    j    k    l    ;    '    ret
+        lsft z    x    c    v    b    n    m    ,    .    /    rsft
+        lctl lmet lalt           spc            ralt comp rctl
+      )
+      (deflayer qwerty
+        grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+        tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+        esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+        lsft z    x    c    v    b    n    m    ,    .    /    rsft
+        lctl lmet lalt           spc            ralt comp rctl
+      )      
+      '';
+    };
+  };
+
   # Enable sound with pipewire.
   sound.enable = true; 
   hardware.pulseaudio.enable = false; 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   security.rtkit.enable = true; 
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
@@ -151,7 +178,7 @@
     nnn
     pavucontrol
     wl-clipboard
-    swaylock
+    kanata
   ];
 
   environment.variables.EDITOR = "helix";

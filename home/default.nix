@@ -7,6 +7,7 @@
     ./lsp
     ./git
     ./sway
+    ./swaylock
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
@@ -28,15 +29,17 @@
     papirus-icon-theme
     vscode
     emacs
+    beeper
   ];
 
   home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Bibata";
+    package = pkgs.bibata-cursors;
     size = 24;
+    gtk.enable = true;
     x11 = {
       enable = true;
-      defaultCursor = "Adwaita";
+      defaultCursor = "Bibata";
     };
   };
 
