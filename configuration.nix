@@ -71,8 +71,10 @@
     # displayManager.gdm.enable = true;
     # desktopManager.gnome.enable = true;
     libinput.enable = true;
-    layout = "us"; 
-    xkbVariant = ""; 
+    xkb = {
+      variant = ""; 
+      layout = "us"; 
+    };
   };
 
   services.logind.extraConfig = ''
@@ -175,13 +177,44 @@
     curl
     helix
     ncdu
-    nnn
+    yazi
     pavucontrol
     wl-clipboard
     kanata
+    borgbackup
+    unzip
   ];
 
-  environment.variables.EDITOR = "helix";
+  
+    services.borgbackup.jobs.home-aidan = 
+    let common-excludes = [
+      # Largest cache dirs
+      ".cache"
+      ".cargo"
+      "*/cache2" # firefox
+      "*/Cache"
+      ".config/Code/CachedData"
+      ".container-diff"
+      ".npm/_cacache"
+      # Work related dirs
+      "*/node_modules"
+      "*/bower_components"
+      "*/_build"
+      "*/.tox"
+      "*/venv"
+      "*/.venv"
+    ];
+    in {
+      paths = "/home/aidan";
+      exclude = common-excludes;
+      encryption.mode = "none";
+      environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i /home/aidan/.ssh/id_rsa";
+      repo = "ssh://aidan@vdha.duckdns.org:22/mnt/external_hard/asus_backup";
+      compression = "auto,zstd";
+      startAt = []; #"daily";
+    };
+
+  environment.variables.EDITOR = "vim";
 
   fonts.packages = with pkgs; [
     noto-fonts

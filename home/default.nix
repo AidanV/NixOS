@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -8,6 +8,8 @@
     ./git
     ./sway
     ./swaylock
+    ./nixvim
+    inputs.nixvim.homeManagerModules.nixvim
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
