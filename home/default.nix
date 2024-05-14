@@ -32,6 +32,9 @@
     vscode
     emacs
     beeper
+  	wayshot slurp grim
+    zoom-us
+    zathura
   ];
 
   home.pointerCursor = {

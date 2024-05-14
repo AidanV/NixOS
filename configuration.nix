@@ -132,8 +132,8 @@
   };
 
   # Enable sound with pipewire.
-  sound.enable = true; 
-  hardware.pulseaudio.enable = false; 
+  # sound.enable = true; 
+  # hardware.pulseaudio.enable = false; 
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -214,7 +214,10 @@
       startAt = []; #"daily";
     };
 
-  environment.variables.EDITOR = "vim";
+  environment.variables = {
+    EDITOR = "vim";
+    # _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
 
   fonts.packages = with pkgs; [
     noto-fonts
