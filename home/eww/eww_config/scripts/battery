@@ -12,7 +12,7 @@ if [ "$per" -gt "90" ]; then
 elif [ "$per" -gt "80" ]; then
 	icon=""
 elif [ "$per" -gt "70" ]; then
-	icon=""
+	icon="\uebd4" #""
 elif [ "$per" -gt "60" ]; then
 	icon=""
 elif [ "$per" -gt "50" ]; then
@@ -32,7 +32,7 @@ elif [ "$per" -gt "0" ]; then
 else
         echo  && exit
 fi
-echo "$icon"
+echo -e "$icon"
 }
 
 percent() {

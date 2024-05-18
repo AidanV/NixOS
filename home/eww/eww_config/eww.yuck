@@ -12,25 +12,31 @@
 (defwidget launcher []
 	(box :orientation "v" 
 		 :space-evenly "false" 
-		 :spacing -15
-  	(button :onclick "scripts/popup launcher"  
-            :class "launcher-icon" "")));;"")))
+         :class "launcher-icon"
+  	(button :onclick "scripts/popup launcher" :class "launcher-icon" "")));;"")))
 
-;; Workspaces Widgets ;;
-(defwidget workspaces []
-	(literal :content workspace))
-(deflisten workspace "scripts/workspace")
 
 ;; Battery Widgets ;;
 (defwidget bat []
 	(box	:orientation "v"	
 			:space-evenly "false"
-	(label	:class "bat" 
-			:halign "end"		
-			:text battery	
-			:tooltip "Battery: ${battery-cappacity}%")))
+            :class "bat" 
+            
+	(label	:halign "end"		
+            :class "bat-text"
+            :text battery-capacity
+			;:text {battery-capacity > 90 ? ("") :  
+            ;      (battery-capacity > 80 ? ("") : 
+            ;      (battery-capacity > 70 ? ("") : 
+            ;      (battery-capacity > 60 ? ("") : 
+            ;      (battery-capacity > 50 ? ("") : 
+            ;      (battery-capacity > 40 ? ("") : 
+            ;      (battery-capacity > 30 ? ("") : 
+            ;      (battery-capacity > 20 ? ("") : (""))))))))}
+			:tooltip "Battery: ${battery-capacity}%")))
+
 (defpoll battery			:interval "1s"	"scripts/battery icon")
-(defpoll battery-cappacity	:interval "1s"	"scripts/battery percent")
+(defpoll battery-capacity	:interval "1s"	"scripts/battery percent")
 
 ;; Wifi Widgets ;;
 (defwidget wifi []
@@ -61,7 +67,7 @@
 				   :min 0))
   			(label :class "brightness-icon" 
 			  	   :text ""))))
-(defpoll current-brightness :interval "1s" "brightnessctl -m -d amdgpu_bl0 | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defpoll current-brightness :initial "0" :interval "1s" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
 (defvar bright false)
 
 ;; Volume Widgets ;;
@@ -83,7 +89,7 @@
 			  :min 0 
 			  :onchange "amixer -D pulse sset Master {}%" ))
 	(button   :onclick "scripts/popup audio"   :class "volume-icon" ""))))
-(defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll current-volume :initial "0" :interval "1s" "pamixer --get-volume");"amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defvar volum false)
 
 ;; Control Panel Widgets ;;	
@@ -138,25 +144,21 @@
 	(box		:orientation "v"					
 				:space-evenly "false"
 
-	(button   	:class "button-bspres"  			
-				:tooltip "BSPWM Restart" 
-				:onclick "bspc wm -r" "" )
-
   	(button		:class "button-reb"					
 	  			:tooltip "Reboot"		 
-				:onclick "reboot"	"")
+				:onclick "reboot now" "")
 
 	(button		:class "button-quit" 				
 				:tooltip "Logout" 		 
-				:onclick "killall bspwm" "")
+				:onclick "hyprctl dispatch exit" "")
 
 	(button		:class "button-lock" 				
 				:tooltip "Lock Screen"	 
-				:onclick "betterlockscreen -l"	"")))
+				:onclick "swaylock; systemctl suspend" "")))
 
 	(button		:class "button-off"					
 				:tooltip "Shutdown"		 
-				:onclick "shutdown now"	""))))
+				:onclick "shutdown now" ""))))
 (defvar power false)
 
 ;; Top Widgets ;;
@@ -164,8 +166,8 @@
 	(box	:orientation "v" 
 			:space-evenly "false" 
 			:valign "start" 
-(launcher)
-(workspaces)))
+            :class "top"
+(launcher)))
 
 ;; Bottom Widgets ;;
 (defwidget bottom []
@@ -185,7 +187,7 @@
 
 ;; Bar Widgets ;;
 (defwidget bar []
-	(box :class "eww_bar" 
+	(box :class "eww-bar" 
 		 :orientation "v" 
 		 :vexpand "false" 
 		 :hexpand "false"
