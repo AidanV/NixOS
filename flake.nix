@@ -3,33 +3,32 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # helix.url = "github:helix-editor/helix/23.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    
     hyprland.url = "github:hyprwm/Hyprland";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+      # url = "github:nix-community/nixvim/nixos-23.05";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, nixvim, ... }: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
+          home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.aidan = import ./home;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-
+            home-manager.extraSpecialArgs = {inherit inputs;};
           }
-
-          # hyprland.homeManagerModules.default
-          # {wayland.windowManager.hyprland.enable = true;}
+          #inputs.home-manager.nixosModules.default
         ];
       };
     };

@@ -1,17 +1,8 @@
 # Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual 
 # (accessible by running ‘nixos-help’).
 
-{ config, inputs, pkgs, callPackage, ... }:
-let
-  lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
-    ''
-      BAT_PCT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'`
-      BAT_STA=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '\w+(?=,)'`
-      echo "`date` battery status:$BAT_STA percentage:$BAT_PCT"
-      test $BAT_PCT -le 20 && test $BAT_PCT -gt 5 && test $BAT_STA = "Discharging" && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send -c device -u normal   "Low Battery" "Would be wise to keep my charger nearby."
-      test $BAT_PCT -le  5                        && test $BAT_STA = "Discharging" && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send -c device -u critical "Low Battery" "Charge me or watch me die!"
-    '';
-in
+{ pkgs, ... }:
+
 { imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix ];
@@ -26,7 +17,7 @@ in
   # Bootloader.
   boot = {
     resumeDevice = "/dev/nvme0n1p7";
-    kernelPackages = pkgs.linuxPackages_latest;#pkgs.linuxKernel.packages.linux_6_7;#pkgs.linux_latest-libre;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;     
       efi.canTouchEfiVariables = true;
@@ -36,6 +27,7 @@ in
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.extraHosts = "libvirt_guest";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -62,48 +54,15 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
+  hardware.opengl.enable = true;
+
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
-  # sway
-  # security.polkit.enable = true;
-  # environment.sessionVariables = rec {
-  #   # WLR_NO_HARDWARE_CURSORS = "1";
-  #   WLR_RENDERER_ALLOW_SOFTWARE = "1";
-  # };
-  # services.xserver = {
-  #   enable = true;
-  # };  
-  # sway
 
-  # i3
-  # environment.pathsToLink = [ "/libexec" ];
 
-  # # Enable the X11 windowing system.
-  # services.xserver = {
-  #   enable = true;
-  #   layout = "us";
-  #   desktopManager = {
-  #     xterm.enable = false;
-  #   };
-  #   displayManager = {
-  #     gdm.enable = true;
-  #     defaultSession = "none+i3";
-  #   };
-  #   windowManager.i3.enable = true;
-  # };
-  #   displayManager = {
-  #     defaultSession = "none+i3";
-  #   };
-  #   windowManager.i3 = {
-  #     enable = true;
-  #     extraPackages = with pkgs; [
-  #       dmenu
-  #       i3status
-  #       i3lock
-  #     ];
-  #   };
-  # };
-  # i3 end
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;  
+  # programs.virt-manager.enable = true;  
 
   # Hyprland
   # virtualisation.vmware.guest.enable = true;
@@ -120,44 +79,12 @@ in
 
   # programs.waybar.enable = true;
   programs.hyprland.enable = true;
-
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm = {
-        enable = true;
-        theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
-        # settings = {
-        #   General.DisplayServer = "wayland";
-        # };
-      };
-      # defaultSession = "gnome";
-    };
   
 
-    libinput.enable = true;
-  };
   programs.xwayland.enable = true;
 
-  services.cron = {
-    enable = true;
-    systemCronJobs = [ "* * * * * aidan bash -x ${lowBatteryNotifier} > /tmp/cron.batt.log 2>&1" ];
-  };
 
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "Hyprland";
-  #       user = "aidan";
-  #     };
-  #   };
-  # };
-  # services.greetd = {
-  #   enable = true;
-  # };
   
-  # services.xserver.libinput.enable = true;
 
   xdg.portal = {
       enable = true;
@@ -179,14 +106,84 @@ in
   #   xkbVariant = ""; 
   # };
   # GNOME
+  services.xserver = { 
+    enable = true;
+    # displayManager.sddm.enable = true;
+    # displayManager.sddm.wayland.enable = true;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
+    libinput.enable = true;
+    xkb = {
+      variant = ""; 
+      layout = "us"; 
+    };
+  };
+
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
+
+  # Power
+  services.thermald.enable = true;
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      START_CHARGE_THRESH_BAT0=75;
+      STOP_CHARGE_THRESH_BAT0=80;
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {                                                  
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        user = "greeter";                                                  
+      }; 
+    };
+  };
+
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      "asus".config = ''
+      (defsrc
+        grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+        tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+        caps a    s    d    f    g    h    j    k    l    ;    '    ret
+        lsft z    x    c    v    b    n    m    ,    .    /    rsft
+        lctl lmet lalt           spc            ralt comp rctl
+      )
+      (deflayer qwerty
+        grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+        tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+        esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+        lsft z    x    c    v    b    n    m    ,    .    /    rsft
+        lctl lmet lalt           spc            ralt comp rctl
+      )      
+      '';
+    };
+  };
+
   # Enable sound with pipewire.
-  sound.enable = true; 
-  hardware.pulseaudio.enable = false; 
+  # sound.enable = true; 
+  # hardware.pulseaudio.enable = false; 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   security.rtkit.enable = true; 
+  security.polkit.enable = true;
+  security.pam.services.swaylock = {};
+  services.dbus.enable = true;
   services.pipewire = {
     enable = true; 
     alsa.enable = true; 
@@ -198,14 +195,6 @@ in
     #media-session.enable = true;
   };
 
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager). services.xserver.libinput.enable = true;
-
-
   programs.zsh.enable = true;
   environment.pathsToLink = [ "/share/zsh" ];
 
@@ -213,7 +202,7 @@ in
   users.users.aidan = { 
     isNormalUser = true; 
     description = "aidan"; 
-    extraGroups = [ "networkmanager" "wheel" ]; 
+    extraGroups = [ "networkmanager" "wheel" "video" ]; 
     shell = pkgs.zsh;
   };
 
@@ -229,9 +218,46 @@ in
     helix
     ncdu
     brightnessctl
+    yazi
+    wl-clipboard
+    kanata
+    borgbackup
+    unzip
   ];
 
-  environment.variables.EDITOR = "helix";
+  
+    services.borgbackup.jobs.home-aidan = 
+    let common-excludes = [
+      # Largest cache dirs
+      ".cache"
+      ".cargo"
+      "*/cache2" # firefox
+      "*/Cache"
+      ".config/Code/CachedData"
+      ".container-diff"
+      ".npm/_cacache"
+      # Work related dirs
+      "*/node_modules"
+      "*/bower_components"
+      "*/_build"
+      "*/.tox"
+      "*/venv"
+      "*/.venv"
+    ];
+    in {
+      paths = "/home/aidan";
+      exclude = common-excludes;
+      encryption.mode = "none";
+      environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i /home/aidan/.ssh/id_rsa";
+      repo = "ssh://aidan@vdha.duckdns.org:22/mnt/external_hard/asus_backup";
+      compression = "auto,zstd";
+      startAt = []; #"daily";
+    };
+
+  environment.variables = {
+    EDITOR = "vim";
+    # _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -239,6 +265,7 @@ in
     noto-fonts-emoji
     fira-code
     font-awesome
+    cantarell-fonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ];})
   ];
 

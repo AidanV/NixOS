@@ -1,48 +1,64 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     ./terminals
     ./helix
     ./lsp
-    ./i3
+    # ./i3
     ./rofi
     ./hyprland
     ./waybar
     # ./sway
+    ./git
+    ./swaylock
+    ./nixvim
+    inputs.nixvim.homeManagerModules.nixvim
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
 
-  programs.git = {
-    enable = true;
-    userName = "AidanV";
-    userEmail = "aidanvanduyne@gmail.com";
-    extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";
-    };
-  };
 
   home.packages = with pkgs; [
     firefox-wayland
-    floorp
+    opera
     neofetch
     # obsidian
     bitwarden
     discord
-    gnome.nautilus
     swww
     eww-wayland
     pavucontrol
     pamixer
     swaylock-effects swayidle wlogout swaybg swaynotificationcenter
     hyprland-protocols
-    wl-clipboard
     libnotify
+    gnome.gnome-tweaks
+    gnome.gnome-boxes
     gnome.gnome-calculator
+    pika-backup
+    bibata-cursors
+    papirus-icon-theme
+    vscode
+    emacs
+    beeper
+  	wayshot slurp grim
+    zoom-us
+    zathura
+    calc
+    htop-vim
   ];
+
+  home.pointerCursor = {
+    name = "Bibata";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11 = {
+      enable = true;
+      defaultCursor = "Bibata";
+    };
+  };
 
   home.stateVersion = "23.05";
 
