@@ -7,6 +7,7 @@
     ./lsp
     # ./i3
     ./rofi
+    ./eww
     ./hyprland
     ./waybar
     # ./sway
@@ -27,10 +28,10 @@
     bitwarden
     discord
     swww
-    eww-wayland
+    eww
     pavucontrol
-    pamixer
-    swaylock-effects swayidle wlogout swaybg swaynotificationcenter
+    # pamixer
+    #swaylock-effects swayidle wlogout swaybg swaynotificationcenter
     hyprland-protocols
     libnotify
     gnome.gnome-tweaks
@@ -47,6 +48,7 @@
     zathura
     calc
     htop-vim
+    pamixer
   ];
 
   home.pointerCursor = {

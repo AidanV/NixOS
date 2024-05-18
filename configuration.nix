@@ -106,16 +106,18 @@
   #   xkbVariant = ""; 
   # };
   # GNOME
-  services.xserver = { 
-    enable = true;
-    # displayManager.sddm.enable = true;
-    # displayManager.sddm.wayland.enable = true;
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
+  services = {
     libinput.enable = true;
-    xkb = {
-      variant = ""; 
-      layout = "us"; 
+    xserver = { 
+      enable = true;
+      # displayManager.sddm.enable = true;
+      # displayManager.sddm.wayland.enable = true;
+      # displayManager.gdm.enable = true;
+      # desktopManager.gnome.enable = true;
+      xkb = {
+        variant = ""; 
+        layout = "us"; 
+      };
     };
   };
 
@@ -223,6 +225,7 @@
     kanata
     borgbackup
     unzip
+    gnome.adwaita-icon-theme
   ];
 
   
@@ -263,11 +266,23 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    noto-fonts-extra
     fira-code
     font-awesome
     cantarell-fonts
+    material-icons
     (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ];})
   ];
+#   fonts.fontconfig.defaultFonts.monospace = [
+#     "JetBrainsMono"
+#     "noto-fonts"
+#     "noto-fonts-cjk"
+#     "noto-fonts-emoji"
+#     "noto-fonts-extra"
+#   ];
+  fonts.fontDir.enable = true;
+
+
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
   #   enable = true; enableSSHSupport = true;
