@@ -9,17 +9,30 @@
 }
 
 // Variable Color's
-$background: #1A1B26;
-$foreground: #A9B1D6;
+//$background: #1A1B26;
+//$foreground: #A9B1D6;
+//
+//$black: #24283B;
+//$gray: #565F89;
+//$red: #F7768E;
+//$green: #73DACA;
+//$yellow: #E0AF68;
+//$blue: #7AA2F7;
+//$magenta: #BB9AF7;
+//$cyan: #7DCFFF;
+//$white: $foreground;
 
-$black: #24283B;
-$gray: #565F89;
-$red: #F7768E;
-$green: #73DACA;
-$yellow: #E0AF68;
-$blue: #7AA2F7;
-$magenta: #BB9AF7;
-$cyan: #7DCFFF;
+$background: #282828;
+$foreground: #ebdbb2;
+
+$black: #3c3836;
+$gray: #928374;
+$red: #fb4934;
+$green: #b8bb26;
+$yellow: #fabd2f;
+$blue: #83a598;
+$purple: #d3869b;
+$aqua: #8ec07c;
 $white: $foreground;
 
 // EWW BAR
@@ -36,7 +49,7 @@ $white: $foreground;
 }
 // Launcher
 .launcher-icon{
-    color: $cyan;
+    color: $aqua;
     font-size: 1.4em;
     //padding: .5rem;
     //border-radius: 5px;
@@ -139,7 +152,7 @@ border-radius: 5px;
 .wifi-icon{
   font-size: 1.6em;
   margin-bottom: .2rem;
-  color: $magenta;
+  color: $purple;
 }
 .brightness-icon{
   font-size: 1.6em;
@@ -211,11 +224,11 @@ font-weight: bold;
 }
 
 calendar.button {
-color: $magenta;
+color: $purple;
 }
 
 calendar.highlight {
-color: $magenta;
+color: $purple;
 font-weight: bold;
 }
 
@@ -244,7 +257,7 @@ color: $background;
   color: $yellow
 }
 .button-quit{
-  color: $magenta;
+  color: $purple;
 }
 .button-lock{
   color: $blue;
