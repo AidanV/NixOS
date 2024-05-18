@@ -35,6 +35,8 @@
   	wayshot slurp grim
     zoom-us
     zathura
+    calc
+    htop-vim
   ];
 
   home.pointerCursor = {
