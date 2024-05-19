@@ -34,7 +34,6 @@
     swaylock-effects # swayidle wlogout swaybg swaynotificationcenter
     hyprland-protocols
     libnotify
-    gnome.gnome-tweaks
     gnome.gnome-boxes
     gnome.gnome-calculator
     pika-backup
@@ -52,14 +51,10 @@
   ];
 
   home.pointerCursor = {
-    name = "Bibata";
+    gtk.enable = true;
+    name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     size = 24;
-    gtk.enable = true;
-    x11 = {
-      enable = true;
-      defaultCursor = "Bibata";
-    };
   };
 
   home.stateVersion = "23.05";

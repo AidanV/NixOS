@@ -25,14 +25,14 @@
 	(label	:halign "end"		
             :class "bat-text"
             :text battery-capacity
-			;:text {battery-capacity > 90 ? ("") :  
-            ;      (battery-capacity > 80 ? ("") : 
-            ;      (battery-capacity > 70 ? ("") : 
-            ;      (battery-capacity > 60 ? ("") : 
-            ;      (battery-capacity > 50 ? ("") : 
-            ;      (battery-capacity > 40 ? ("") : 
-            ;      (battery-capacity > 30 ? ("") : 
-            ;      (battery-capacity > 20 ? ("") : (""))))))))}
+			;:text {battery-capacity > 90 ? ({""}) :  
+            ;      (battery-capacity > 80 ? ({""}) : 
+            ;      (battery-capacity > 70 ? ({""}) : 
+            ;      (battery-capacity > 60 ? ({""}) : 
+            ;      (battery-capacity > 50 ? ({""}) : 
+            ;      (battery-capacity > 40 ? ({""}) : 
+            ;      (battery-capacity > 30 ? ({""}) : 
+            ;      (battery-capacity > 20 ? ({""}) : ({""}))))))))}
 			:tooltip "Battery: ${battery-capacity}%")))
 
 (defpoll battery			:interval "1s"	"scripts/battery icon")
@@ -154,11 +154,11 @@
 
 	(button		:class "button-lock" 				
 				:tooltip "Lock Screen"	 
-				:onclick "exec swaylock --screenshots --effect-blur 10x15 --ring-color 282828 --key-hl-color b8bb26 --line-color 00000000 --inside-color 00000088 --separator-color 00000000" "")))
+				:onclick "exec swaylock --screenshots --effect-blur 10x15 --ring-color 282828 --key-hl-color b8bb26 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 &" "")))
 
 	(button		:class "button-off"					
-				:tooltip "Shutdown"		 
-				:onclick "shutdown now" ""))))
+				:tooltip "Hibernate"		 
+				:onclick "systemctl hibernate" ""))))
 (defvar power false)
 
 ;; Top Widgets ;;

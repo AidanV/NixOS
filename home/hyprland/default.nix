@@ -35,6 +35,8 @@
   xdg.configFile."swaync/style.css".source = ./swaync.css;
   xdg.configFile."swaync/config.json".source = ./swaync.json;
 
+  # home.file."${config.home.homeDirectory}/.local/share/icons/Bibata-Modern-Classic".source = ./Bibata-Modern-Classic;
+
   wayland.windowManager.hyprland = {
     enable = true;
     # config.exec_once = [
