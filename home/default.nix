@@ -12,7 +12,7 @@
     ./waybar
     # ./sway
     ./git
-    ./swaylock
+    # ./swaylock
     ./nixvim
     inputs.nixvim.homeManagerModules.nixvim
   ];
@@ -31,7 +31,7 @@
     eww
     pavucontrol
     # pamixer
-    #swaylock-effects swayidle wlogout swaybg swaynotificationcenter
+    swaylock-effects # swayidle wlogout swaybg swaynotificationcenter
     hyprland-protocols
     libnotify
     gnome.gnome-tweaks

@@ -154,7 +154,7 @@
 
 	(button		:class "button-lock" 				
 				:tooltip "Lock Screen"	 
-				:onclick "swaylock; systemctl suspend" "")))
+				:onclick "exec swaylock --screenshots --effect-blur 10x15 --ring-color 282828 --key-hl-color b8bb26 --line-color 00000000 --inside-color 00000088 --separator-color 00000000" "")))
 
 	(button		:class "button-off"					
 				:tooltip "Shutdown"		 

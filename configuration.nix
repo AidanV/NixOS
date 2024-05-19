@@ -259,8 +259,10 @@
 
   environment.variables = {
     EDITOR = "vim";
+    NIXOS_OZONE_WL = "1";
     # _JAVA_AWT_WM_NONREPARENTING = "1";
   };
+
 
   fonts.packages = with pkgs; [
     noto-fonts
