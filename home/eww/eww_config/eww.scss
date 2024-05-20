@@ -39,6 +39,7 @@ $white: $foreground;
 .eww-bar{
   background-color: $background;
   padding: .3rem;
+  border-radius: 0px 8px 8px 0px
 }
 
 .top {
@@ -181,7 +182,7 @@ scale trough {
   border-radius: 5px;
 }
 .volbar trough highlight {
-  background-color: $green;
+  background-color: $blue;
   border-radius: 5px;
 }
 

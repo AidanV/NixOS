@@ -167,6 +167,12 @@
             :class "top"
 (launcher)))
 
+; (defwidget middle []
+;     (box    :orientation "v"
+; 			:space-evenly "false" 
+; 			:valign "center" 
+;             :class "top"))
+
 ;; Bottom Widgets ;;
 (defwidget bottom []
 	(box	:orientation "v" 
@@ -190,6 +196,7 @@
 		 :vexpand "false" 
 		 :hexpand "false"
 (top)
+; (middle)
 (end)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -200,7 +207,7 @@
 	:geometry (geometry :x "0" 
 						:y "0" 
                         :anchor "left center"
-						:height "100%" 
+						:height "876" 
 						:width "47px")
 	:monitor 0
     :exclusive true
