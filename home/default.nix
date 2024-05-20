@@ -19,7 +19,6 @@
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
 
-
   home.packages = with pkgs; [
     firefox-wayland
     opera
@@ -31,7 +30,8 @@
     eww
     pavucontrol
     # pamixer
-    swaylock-effects swaynotificationcenter# swayidle wlogout swaybg 
+    swaylock-effects
+    swaynotificationcenter # swayidle wlogout swaybg
     hyprland-protocols
     libnotify
     gnome.gnome-boxes
@@ -42,7 +42,9 @@
     vscode
     emacs
     beeper
-  	wayshot slurp grim
+    wayshot
+    slurp
+    grim
     zoom-us
     zathura
     calc
@@ -60,5 +62,4 @@
   home.stateVersion = "23.05";
 
   programs.home-manager.enable = true;
-
 }

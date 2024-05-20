@@ -1,6 +1,8 @@
-{ pkgs, ... }: 
-let font = pkgs.fira-code;
-in {
+{ pkgs, ... }:
+let
+  font = pkgs.fira-code;
+in
+{
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.kitty.enable
   programs.kitty = {
     enable = true;
@@ -17,5 +19,4 @@ in {
       name = "FiraCode";
     };
   };
-
 }

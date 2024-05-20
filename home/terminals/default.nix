@@ -1,7 +1,8 @@
-{...}:{
-  imports = [ 
-    ./kitty 
-    ./tmux 
+{ ... }:
+{
+  imports = [
+    ./kitty
+    ./tmux
     ./starship
     ./zsh
   ];
