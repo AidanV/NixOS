@@ -130,23 +130,28 @@ border-radius: 5px;
   background-color: $black;
   border-radius: 5px;
 }
-.bat{
-  font-family: Comic Mono;
-  font-weight: bold;
-  font-size: 1.2em;
-  //background-color: $black;
-  border-radius: 5px;
-  padding: .7rem 0 .5rem 0;
-  margin: .5rem 0 .5rem 0;
-  color: $blue;
-  //padding: .5rem;
-  //padding: .5rem;
-  //font-family: Material Icons;
-  //font-size: 1.6em;
-  //font-family: Material Icons; //JetBrainsMono Nerd Font;
-  //font-size: .2rem;//1.2em;
-  //padding-right: .5rem;
-  //margin: .2rem 0 .2rem 0;
+// .bat{
+//   font-family: Comic Mono;
+//   font-weight: bold;
+//   font-size: 1.2em;
+//   //background-color: $black;
+//   border-radius: 5px;
+//   padding: .7rem 0 .5rem 0;
+//   margin: .5rem 0 .5rem 0;
+//   color: $blue;
+//   //padding: .5rem;
+//   //padding: .5rem;
+//   //font-family: Material Icons;
+//   //font-size: 1.6em;
+//   //font-family: Material Icons; //JetBrainsMono Nerd Font;
+//   //font-size: .2rem;//1.2em;
+//   //padding-right: .5rem;
+//   //margin: .2rem 0 .2rem 0;
+// }
+.bat-icon{
+  font-size: 1.6em;
+  margin-bottom: .2rem;
+  color: $green;
 }
 .wifi-icon{
   font-size: 1.6em;
@@ -161,7 +166,7 @@ border-radius: 5px;
 .volume-icon{
   font-size: 1.6em;
   margin: .2rem 0 .2rem 0;
-  color: $green;
+  color: $blue;
 }
 scale trough {
   all: unset;

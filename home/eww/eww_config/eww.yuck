@@ -20,23 +20,21 @@
 (defwidget bat []
 	(box	:orientation "v"	
 			:space-evenly "false"
-            :class "bat" 
-            
-	(label	:halign "end"		
-            :class "bat-text"
-            :text battery-capacity
-			;:text {battery-capacity > 90 ? ({""}) :  
-            ;      (battery-capacity > 80 ? ({""}) : 
-            ;      (battery-capacity > 70 ? ({""}) : 
-            ;      (battery-capacity > 60 ? ({""}) : 
-            ;      (battery-capacity > 50 ? ({""}) : 
-            ;      (battery-capacity > 40 ? ({""}) : 
-            ;      (battery-capacity > 30 ? ({""}) : 
-            ;      (battery-capacity > 20 ? ({""}) : ({""}))))))))}
-			:tooltip "Battery: ${battery-capacity}%")))
+            :tooltip "Battery: ${battery-capacity}%"
+	(label	:class "bat-icon"
+            :text battery)))
+			; {battery-capacity > 90 ? ("") :  
+            ; (battery-capacity > 80 ? ("") : 
+            ; (battery-capacity > 70 ? ("") : ;("") : 
+            ; (battery-capacity > 60 ? ("") : 
+            ; (battery-capacity > 50 ? ("") : 
+            ; (battery-capacity > 40 ? ("") : 
+            ; (battery-capacity > 30 ? ("") : 
+            ; (battery-capacity > 20 ? ("") : (""))))))))})))
 
 (defpoll battery			:interval "1s"	"scripts/battery icon")
 (defpoll battery-capacity	:interval "1s"	"scripts/battery percent")
+(defvar bat false)
 
 ;; Wifi Widgets ;;
 (defwidget wifi []

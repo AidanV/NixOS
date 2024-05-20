@@ -31,7 +31,7 @@
     eww
     pavucontrol
     # pamixer
-    swaylock-effects # swayidle wlogout swaybg swaynotificationcenter
+    swaylock-effects swaynotificationcenter# swayidle wlogout swaybg 
     hyprland-protocols
     libnotify
     gnome.gnome-boxes

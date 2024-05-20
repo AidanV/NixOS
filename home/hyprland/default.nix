@@ -32,8 +32,8 @@
 
    };
 
-  xdg.configFile."swaync/style.css".source = ./swaync.css;
-  xdg.configFile."swaync/config.json".source = ./swaync.json;
+  xdg.configFile."swaync/style.css".source = ./style.css;
+  xdg.configFile."swaync/config.json".source = ./config.json;
 
   # home.file."${config.home.homeDirectory}/.local/share/icons/Bibata-Modern-Classic".source = ./Bibata-Modern-Classic;
 
@@ -45,6 +45,7 @@
     #   "${pkgs.waybar}/bin/waybar"
     #   "${pkgs.swww}/bin/swww init & sleep 0.1 & ${pkgs.swww}/bin/swww img ./wallpaper.png"
     # ];
+    systemd.variables = ["--all"];
     extraConfig = ''
       ${builtins.readFile ./hyprland.conf}
     '';
