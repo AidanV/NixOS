@@ -156,7 +156,7 @@
 
 	(button		:class "button-off"					
 				:tooltip "Hibernate"		 
-				:onclick "systemctl hibernate" ""))))
+				:onclick "scripts/hibernate" ""))))
 (defvar power false)
 
 ;; Top Widgets ;;

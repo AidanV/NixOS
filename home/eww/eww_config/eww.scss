@@ -22,7 +22,7 @@
 //$cyan: #7DCFFF;
 //$white: $foreground;
 
-$background: #282828;
+$background: rgba(40, 40, 40, 0.8);
 $foreground: #ebdbb2;
 
 $black: #3c3836;
@@ -39,7 +39,11 @@ $white: $foreground;
 .eww-bar{
   background-color: $background;
   padding: .3rem;
-  border-radius: 0px 8px 8px 0px
+  border-radius: 0px 12px 12px 0px;
+  border-style: solid;
+  border-color: rgba(142, 192, 124, 0.5);
+  border-width: 4px;
+  border-left: 0;
 }
 
 .top {
