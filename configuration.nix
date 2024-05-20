@@ -90,6 +90,16 @@
         layout = "us";
       };
     };
+    dbus.enable = true;
+  };
+
+  # Sound
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   services.logind.extraConfig = ''
@@ -155,14 +165,6 @@
     rtkit.enable = true;
     polkit.enable = true;
     pam.services.swaylock = { };
-    dbus.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
   };
 
   programs.zsh.enable = true;
