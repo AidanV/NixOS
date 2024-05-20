@@ -5,14 +5,10 @@
     ./terminals
     ./helix
     ./lsp
-    # ./i3
     ./rofi
     ./eww
     ./hyprland
-    ./waybar
-    # ./sway
     ./git
-    # ./swaylock
     ./nixvim
     inputs.nixvim.homeManagerModules.nixvim
   ];
@@ -23,13 +19,11 @@
     firefox-wayland
     opera
     neofetch
-    # obsidian
     bitwarden
     discord
     swww
     eww
     pavucontrol
-    # pamixer
     swaylock-effects
     swaynotificationcenter # swayidle wlogout swaybg
     hyprland-protocols
