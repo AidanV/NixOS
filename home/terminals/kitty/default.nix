@@ -5,7 +5,7 @@ in {
   programs.kitty = {
     enable = true;
     settings = {
-      background_opacity = "0.9";
+      background_opacity = "0.8";
       dynamic_background_opacity = true;
       hide_window_decorations = true;
       linux_display_server = "wayland";
