@@ -36,9 +36,10 @@
     vscode
     emacs
     beeper
-    wayshot
-    slurp
-    grim
+    # wayshot
+    # slurp
+    # grim
+    grimblast
     zoom-us
     zathura
     calc
