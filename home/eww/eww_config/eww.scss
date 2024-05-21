@@ -54,18 +54,24 @@ $white: $foreground;
 }
 // Launcher
 .launcher-icon{
-    color: $aqua;
-    font-size: 1.4em;
-    //padding: .5rem;
-    //border-radius: 5px;
+  color: $aqua;
+  font-size: 1.4em;
+  //padding: .5rem;
+  //border-radius: 5px;
 }
 
 // Workspaces
 .works {
-font-family: Material Icons; //"Font Awesome 6 Pro";
-padding: .2rem .7rem .2rem .7rem;
-background-color: $black;
-border-radius: 5px;
+  font-family: Material Icons; //"Font Awesome 6 Pro";
+  //padding: 1rem .2rem 1rem .2rem;
+  //padding: .5rem;
+  background-color: $black;
+}
+
+.work-icon {
+  padding: .5rem .2rem .5rem .2rem;
+  font-size: 1.3rem;
+  color: $white;
 }
 
 //.00, .01, .02, .03, .04, .05, .06,
