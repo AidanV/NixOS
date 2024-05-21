@@ -6,11 +6,12 @@
     ./helix
     ./lsp
     ./rofi
-    ./eww
     ./hyprland
     ./git
     ./nixvim
+    ./ags
     inputs.nixvim.homeManagerModules.nixvim
+    inputs.ags.homeManagerModules.default
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
@@ -22,7 +23,6 @@
     bitwarden
     discord
     swww
-    eww
     pavucontrol
     swaylock-effects
     swaynotificationcenter # swayidle wlogout swaybg
