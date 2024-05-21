@@ -233,6 +233,7 @@
   environment.variables = {
     EDITOR = "vim";
     NIXOS_OZONE_WL = "1";
+    XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
   };
 
   fonts = {
