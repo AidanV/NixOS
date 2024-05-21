@@ -232,6 +232,8 @@
 
   environment.variables = {
     EDITOR = "vim";
+    BROWSER = "firefox";
+    TERMINAL = "kitty";
     NIXOS_OZONE_WL = "1";
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
   };
