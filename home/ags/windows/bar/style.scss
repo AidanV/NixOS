@@ -118,8 +118,13 @@
           font-size: 20px;
           padding-right: 6px;
         }
-      }
+        & .battery_charge_label {
+          @include button;
 
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
       & .time_indicator {
         @include section;
         @include button;

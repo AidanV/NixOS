@@ -5,6 +5,8 @@ import Menu from './menu/Menu.js'
 
 import { sidebarShown } from '../../shared/vars.js'
 
+App.addIcons(`${App.configDir}/assets/svg`)
+
 const HyprlandService = await Service.import('hyprland')
 const SystemTrayService = await Service.import('systemtray')
 const BatteryService = await Service.import('battery')
@@ -96,7 +98,7 @@ function StartSection() {
     vertical: true,
     spacing: 4,
     children: [
-      batteryProgress,
+      //batteryProgress,
       //SideBarButton,
       //Divider(),
       //SearchButton,
@@ -172,6 +174,25 @@ function CenterSection() {
 }
 
 function EndSection() {
+
+  const BatteryCharge = Widget.Label({
+    label: BatteryService.bind('percent').as(p => p.toString()),
+    className: 'battery_charge_label',
+  })
+
+  const BatteryLevelIcon = Widget.Icon({
+    icon: BatteryService.bind('icon_name'),
+    css: 'font-size: 20px; padding-bottom: 2px',
+    //className: 'battery_icon',
+  })
+
+  //  Widget.CircularProgress({
+  //  child: Widget.Label('B'),
+  //  visible: BatteryService.bind('available'),
+  //  value: BatteryService.bind('percent').as(p => p > 0 ? p / 100 : 0),
+  //  class_name: BatteryService.bind('charging').as(ch => ch ? 'charging' : ''),
+  //})
+
   const AudioControlButton = Widget.Button({
     attribute: { menu: Menu('audio') },
     className: 'audio_control_button',
@@ -211,6 +232,15 @@ function EndSection() {
     vertical: true,
     spacing: 4,
     children: [
+      Widget.Box({
+        className: 'controls',
+        hpack: 'center',
+        vertical: true,
+        children: [
+          BatteryLevelIcon,
+          BatteryCharge,
+        ]
+      }),
       Widget.Box({
         className: 'controls',
         hpack: 'center',
