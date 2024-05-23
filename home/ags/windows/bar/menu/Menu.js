@@ -40,6 +40,7 @@ export default function(control) {
     }
   }
 
+
   if (control === 'system') {
     App.addWindow(Widget.Window({
       name: 'system_controls',

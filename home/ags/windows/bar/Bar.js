@@ -10,6 +10,8 @@ App.addIcons(`${App.configDir}/assets/svg`)
 const HyprlandService = await Service.import('hyprland')
 const SystemTrayService = await Service.import('systemtray')
 const BatteryService = await Service.import('battery')
+const BluetoothService = await Service.import('bluetooth')
+const NetworkService = await Service.import('network')
 
 function Divider() {
   return Widget.Box({
@@ -192,6 +194,29 @@ function EndSection() {
   //  value: BatteryService.bind('percent').as(p => p > 0 ? p / 100 : 0),
   //  class_name: BatteryService.bind('charging').as(ch => ch ? 'charging' : ''),
   //})
+  //
+  
+
+  const BluetoothButton = Widget.Button({
+    className: 'bluetooth_control_button',
+    child: Widget.Icon({
+      icon: BluetoothService.bind('enabled').as(on =>
+          `bluetooth-${on ? 'active' : 'disabled'}-symbolic`),
+      css: 'font-size: 18px',
+    }),
+    onClicked: () => Utils.exec('rofi-bluetooth'),
+  })
+
+  const WifiButton = Widget.Button({
+    className: 'wifi_control_button',
+    child: Widget.Icon({
+      icon: NetworkService.wifi.bind('icon_name'),
+      css: 'font-size: 18px',
+    }),
+    onClicked: () => Utils.execAsync(['kitty', '--hold', 'sh', '-c', 'nmtui'])
+  })
+
+
 
   const AudioControlButton = Widget.Button({
     attribute: { menu: Menu('audio') },
@@ -239,6 +264,16 @@ function EndSection() {
         children: [
           BatteryLevelIcon,
           BatteryCharge,
+        ]
+      }),
+      Widget.Box({
+        className: 'controls',
+        hpack: 'center',
+        vertical: true,
+        spacing: 4,
+        children: [
+          BluetoothButton,
+          WifiButton,
         ]
       }),
       Widget.Box({

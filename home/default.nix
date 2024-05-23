@@ -45,6 +45,7 @@
     calc
     htop-vim
     pamixer
+    rofi-bluetooth
   ];
 
   home.pointerCursor = {

@@ -124,6 +124,12 @@
           font-size: 14px;
           font-weight: 500;
         }
+        & .bluetooth_control_button {
+          @include control_button;
+        }
+        & .wifi_control_button {
+          @include control_button;
+        }
       }
       & .time_indicator {
         @include section;
