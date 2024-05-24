@@ -20,6 +20,13 @@ function Divider() {
 }
 
 function StartSection() {
+  const PowerButton = Widget.Button({
+    className: 'search_button',
+    cursor: 'pointer',
+    child: Widget.Label(''),
+    onPrimaryClick: () => Utils.exec('rofi -show power-menu -modi power-menu:rofi-power-menu')
+  })
+
   const SideBarButton = Widget.Button({
     className: 'sidebar_button',
     cursor: 'pointer',
@@ -100,6 +107,7 @@ function StartSection() {
     vertical: true,
     spacing: 4,
     children: [
+      PowerButton,
       //batteryProgress,
       //SideBarButton,
       //Divider(),

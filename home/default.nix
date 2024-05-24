@@ -28,7 +28,6 @@
     swaynotificationcenter # swayidle wlogout swaybg
     hyprland-protocols
     libnotify
-    gnome.gnome-boxes
     gnome.gnome-calculator
     pika-backup
     bibata-cursors
@@ -46,6 +45,8 @@
     htop-vim
     pamixer
     rofi-bluetooth
+    rofi-power-menu
+    virt-manager
   ];
 
   home.pointerCursor = {
