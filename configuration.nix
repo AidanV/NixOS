@@ -90,18 +90,7 @@
 
   programs.dconf.enable = true;
 
-  programs.hyprland.enable = true;
-
   programs.xwayland.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    # wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
 
   services = {
     libinput.enable = true;
@@ -114,25 +103,6 @@
     };
     dbus.enable = true;
   };
-
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0403",ATTRS{idProduct}=="a6d0",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0403",ATTRS{idProduct}=="a6d1",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0403",ATTRS{idProduct}=="6010",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="1cbe",ATTRS{idProduct}=="00fd",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="1cbe",ATTRS{idProduct}=="00ff",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef1",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef2",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef4",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="f432",MODE:="0666"
-    SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="0d28",ATTRS{idProduct}=="0204",MODE:="0666"
-    KERNEL=="hidraw*",ATTRS{busnum}=="*",ATTRS{idVendor}=="0d28",ATTRS{idProduct}=="0204",MODE:="0666"
-    ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef0",ENV{ID_MM_DEVICE_IGNORE}="1"
-    ATTRS{idVendor}=="0c55",ATTRS{idProduct}=="0220",ENV{ID_MM_DEVICE_IGNORE}="1"
-    KERNEL=="ttyACM[0-9]*",MODE:="0666"
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="c32a", MODE="0660", GROUP="dialout", RUN+="/sbin/modprobe ftdi-sio" RUN+="${pkgs.stdenv.shell} -c 'echo 0451 c32a > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'""
-  '';
 
   # Sound
   services.pipewire = {
@@ -152,31 +122,26 @@
   services = {
     upower.enable = true;
     thermald.enable = true;
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_BOOST_ON_AC = 1;
-        CPU_BOOST_ON_BAT = 0;
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 80;
-      };
-    };
+    # tlp = {
+    #   enable = true;
+    #   settings = {
+    #     CPU_BOOST_ON_AC = 1;
+    #     CPU_BOOST_ON_BAT = 0;
+    #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    #     START_CHARGE_THRESH_BAT0 = 75;
+    #     STOP_CHARGE_THRESH_BAT0 = 80;
+    #   };
+    # };
+  };
+
+  services = { 
+    displayManager.cosmic-greeter.enable = true;
+    desktopManager.cosmic.enable = true;
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
 
   services.kanata = {
     enable = true;

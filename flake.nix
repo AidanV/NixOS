@@ -1,11 +1,19 @@
 {
   description = "NixOS configuration";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://cosmic.cachix.org/"
+    ];
+    extra-trusted-public-keys = [
+      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
     nixvim = {
       url = "github:nix-community/nixvim";
       # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
@@ -14,12 +22,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags.url = "github:Aylur/ags";
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       nixpkgs,
       home-manager,
+      nixos-cosmic,
       nixvim,
       ...
     }:
@@ -31,6 +44,7 @@
             inherit inputs;
           };
           modules = [
+            nixos-cosmic.nixosModules.default
             ./configuration.nix
             home-manager.nixosModules.home-manager
             {

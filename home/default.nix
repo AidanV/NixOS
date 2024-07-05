@@ -6,7 +6,6 @@
     ./helix
     ./lsp
     ./rofi
-    ./hyprland
     ./git
     ./nixvim
     ./ags
@@ -24,9 +23,6 @@
     discord
     swww
     pavucontrol
-    swaylock-effects
-    swaynotificationcenter # swayidle wlogout swaybg
-    hyprland-protocols
     libnotify
     gnome.gnome-calculator
     pika-backup
