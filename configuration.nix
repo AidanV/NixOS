@@ -16,11 +16,9 @@
       "flakes"
     ];
     substituters = [
-      "https://hyprland.cachix.org"
       "https://cache.iog.io"
     ];
     trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
     ];
   };
@@ -81,7 +79,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
@@ -205,7 +203,7 @@
     kanata
     borgbackup
     unzip
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     nixfmt-rfc-style
     polkit_gnome
   ];

@@ -8,9 +8,7 @@
     ./rofi
     ./git
     ./nixvim
-    ./ags
     inputs.nixvim.homeManagerModules.nixvim
-    inputs.ags.homeManagerModules.default
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
@@ -24,7 +22,7 @@
     swww
     pavucontrol
     libnotify
-    gnome.gnome-calculator
+    gnome-calculator
     pika-backup
     bibata-cursors
     papirus-icon-theme

@@ -59,7 +59,7 @@
             installCargo = false;
             installRustc = false;
           };
-          nil_ls = {
+          nil-ls = {
             enable = true;
           };
           nimls = {
