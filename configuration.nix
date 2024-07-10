@@ -23,7 +23,7 @@
     ];
   };
 
-  # Bootloader.
+  # Bootloader
   boot = {
     resumeDevice = "/dev/nvme0n1p7";
     kernelPackages = pkgs.linuxPackages_latest;
