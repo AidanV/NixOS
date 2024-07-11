@@ -27,6 +27,7 @@
     bibata-cursors
     papirus-icon-theme
     vscode
+    zed-editor
     emacs
     beeper
     # wayshot

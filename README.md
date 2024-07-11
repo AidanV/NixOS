@@ -96,5 +96,5 @@ sudo nixos-rebuild switch --flake .#nixos
 ```
 If you ever want to upgrade your packages you can run:
 ```
-sudo nixos-rebuild switch --upgrade --flake .#nixos
+sudo nix flake update
 ```
