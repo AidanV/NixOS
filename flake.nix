@@ -23,7 +23,7 @@
     };
     ags.url = "github:Aylur/ags";
     nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
+      url = "github:AidanV/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
