@@ -41,7 +41,6 @@
     pamixer
     rofi-bluetooth
     rofi-power-menu
-    virt-manager
     gparted
   ];
 
