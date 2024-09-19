@@ -1,4 +1,4 @@
-# This is a NixOS configuration that uses the COSMIC Desktop Environment
+# This is a NixOS configuration that uses the GNOME Desktop Environment
 #### Other Desktop Environments located on other branches
 
 ## Recommended steps to install for yourself on NixOS

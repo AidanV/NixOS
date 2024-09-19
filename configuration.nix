@@ -98,6 +98,8 @@
     libinput.enable = true;
     xserver = {
       enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
       xkb = {
         variant = "";
         layout = "us";
@@ -114,6 +116,7 @@
     pulse.enable = true;
     jack.enable = true;
   };
+  hardware.pulseaudio.enable = false;
 
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
@@ -135,11 +138,6 @@
     #     STOP_CHARGE_THRESH_BAT0 = 80;
     #   };
     # };
-  };
-
-  services = {
-    displayManager.cosmic-greeter.enable = true;
-    desktopManager.cosmic.enable = true;
   };
 
   # Enable CUPS to print documents.

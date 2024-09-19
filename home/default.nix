@@ -42,7 +42,22 @@
     rofi-bluetooth
     rofi-power-menu
     gparted
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.gsconnect
   ];
+
+  dconf = {
+    enable = true;
+    settings."org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        blur-my-shell.extensionUuid
+        gsconnect.extensionUuid
+        battery-health-charging.extensionUuid
+      ];
+    };
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
