@@ -5,7 +5,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     initExtra = ''
-      alias ssh='kitten ssh'
       alias v='vim .'
     '';
   };

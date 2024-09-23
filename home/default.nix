@@ -22,7 +22,6 @@
     swww
     pavucontrol
     libnotify
-    gnome-calculator
     pika-backup
     bibata-cursors
     papirus-icon-theme
@@ -42,6 +41,8 @@
     rofi-bluetooth
     rofi-power-menu
     gparted
+    gnome-tweaks
+    gnome-calculator
     gnomeExtensions.blur-my-shell
     gnomeExtensions.gsconnect
   ];
@@ -59,9 +60,18 @@
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 
+  # gtk = {
+  #   enable = true;
+  #   cursorTheme = {
+  #     package = pkgs.bibata-cursors;
+  #     name = "bibata-modern-classic";
+  #   };
+  # };
+
   home.pointerCursor = {
     gtk.enable = true;
-    name = "Bibata-Modern-Classic";
+    x11.enable = true;
+    name = "bibata-modern-classic";
     package = pkgs.bibata-cursors;
     size = 24;
   };

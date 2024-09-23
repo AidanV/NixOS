@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual
 # (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -193,22 +193,23 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    gitFull
-    wget
-    curl
-    helix
-    ncdu
-    brightnessctl
-    yazi
-    wl-clipboard
-    kanata
-    borgbackup
-    unzip
-    adwaita-icon-theme
-    nixfmt-rfc-style
-    polkit_gnome
+  environment.systemPackages = [
+    pkgs.vim
+    pkgs.gitFull
+    pkgs.wget
+    pkgs.curl
+    pkgs.helix
+    pkgs.ncdu
+    pkgs.brightnessctl
+    pkgs.yazi
+    pkgs.wl-clipboard
+    pkgs.kanata
+    pkgs.borgbackup
+    pkgs.unzip
+    pkgs.adwaita-icon-theme
+    pkgs.nixfmt-rfc-style
+    pkgs.polkit_gnome
+    inputs.zen-browser.packages.x86_64-linux.specific
   ];
 
   services.borgbackup.jobs.home-aidan =
