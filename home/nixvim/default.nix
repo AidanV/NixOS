@@ -11,6 +11,7 @@
     };
     colorschemes.gruvbox.enable = true;
     plugins = {
+      texpresso.enable = true;
       rust-tools.enable = true;
       #lightline.enable = true;
       treesitter.enable = true;
@@ -68,7 +69,7 @@
           gopls = {
             enable = true;
           };
-          tsserver = {
+          ts-ls = {
             enable = true;
           };
           html = {

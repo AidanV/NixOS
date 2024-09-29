@@ -86,6 +86,11 @@
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableKvm = true;
+    addNetworkInterface = false;
+  };
   virtualisation.spiceUSBRedirection.enable = true;
 
   programs.virt-manager.enable = true;
