@@ -12,7 +12,6 @@
     colorschemes.gruvbox.enable = true;
     plugins = {
       texpresso.enable = true;
-      rust-tools.enable = true;
       #lightline.enable = true;
       treesitter.enable = true;
       lualine.enable = true;
@@ -52,15 +51,15 @@
           pyright = {
             enable = true;
           };
-          lua-ls = {
+          lua_ls = {
             enable = true;
           };
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
           };
-          nil-ls = {
+          nil_ls = {
             enable = true;
           };
           nimls = {
@@ -69,7 +68,7 @@
           gopls = {
             enable = true;
           };
-          ts-ls = {
+          ts_ls = {
             enable = true;
           };
           html = {

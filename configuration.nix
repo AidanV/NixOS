@@ -206,7 +206,7 @@
     pkgs.helix
     pkgs.ncdu
     pkgs.brightnessctl
-    pkgs.yazi
+    #pkgs.yazi
     pkgs.wl-clipboard
     pkgs.kanata
     pkgs.borgbackup
@@ -249,7 +249,8 @@
 
   environment.variables = {
     EDITOR = "vim";
-    BROWSER = "firefox";
+    BROWSER = "zen";
+    GTK_USE_PORTAL=1;
     TERMINAL = "kitty";
     NIXOS_OZONE_WL = "1";
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
@@ -258,7 +259,7 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       noto-fonts-extra
       fira-code
@@ -283,6 +284,8 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  programs.localsend.enable = true;
 
   # Open ports in the firewall. networking.firewall.allowedTCPPorts = [ ... ]; networking.firewall.allowedUDPPorts = [ ... ]; Or disable the firewall altogether.
   # networking.firewall.enable = false;

@@ -17,7 +17,7 @@
     firefox-wayland
     opera
     neofetch
-    bitwarden
+    # bitwarden
     discord
     swww
     pavucontrol
@@ -26,7 +26,7 @@
     bibata-cursors
     papirus-icon-theme
     vscode
-    zed-editor
+    zed-editor.fhs
     emacs
     beeper
     # wayshot
@@ -40,6 +40,7 @@
     pamixer
     rofi-bluetooth
     rofi-power-menu
+    quickemu
     gparted
     gnome-tweaks
     gnome-calculator
