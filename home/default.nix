@@ -14,6 +14,7 @@
   home.homeDirectory = "/home/aidan";
 
   home.packages = with pkgs; [
+    ghostty
     firefox-wayland
     opera
     neofetch
@@ -46,6 +47,8 @@
     gnome-calculator
     gnomeExtensions.blur-my-shell
     gnomeExtensions.gsconnect
+    openocd
+    docker
   ];
 
   dconf = {

@@ -13,7 +13,7 @@ in
       linux_display_server = "wayland";
     };
     shellIntegration.enableZshIntegration = true;
-    theme = "Gruvbox Material Dark Medium";
+    themeFile = "GruvboxMaterialDarkHard";
     font = {
       package = font;
       name = "FiraCode";

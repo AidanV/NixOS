@@ -17,9 +17,11 @@
     ];
     substituters = [
       "https://cache.iog.io"
+      "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
       "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 
@@ -87,7 +89,7 @@
 
   virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host = {
-    enable = true;
+    enable = false;
     enableKvm = true;
     addNetworkInterface = false;
   };
@@ -251,7 +253,7 @@
     EDITOR = "vim";
     BROWSER = "zen";
     GTK_USE_PORTAL=1;
-    TERMINAL = "kitty";
+    TERMINAL = "ghostty";
     NIXOS_OZONE_WL = "1";
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
   };
@@ -266,15 +268,16 @@
       font-awesome
       cantarell-fonts
       material-icons
-      (nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "Iosevka"
-        ];
-      })
     ];
     fontDir.enable = true;
   };
+      # nerd-fonts
+      # (nerdfonts.override {
+      #   fonts = [
+      #     "JetBrainsMono"
+      #     "Iosevka"
+      #   ];
+      # })
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
   #   enable = true; enableSSHSupport = true;
@@ -285,6 +288,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  programs.steam.enable = true;
   programs.localsend.enable = true;
 
   # Open ports in the firewall. networking.firewall.allowedTCPPorts = [ ... ]; networking.firewall.allowedUDPPorts = [ ... ]; Or disable the firewall altogether.
