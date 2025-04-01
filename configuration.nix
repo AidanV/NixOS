@@ -36,22 +36,6 @@
     supportedFilesystems = [ "ntfs" ];
   };
 
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
   networking.extraHosts = "libvirt_guest";
@@ -120,10 +104,9 @@
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = false;
   };
-  hardware.pulseaudio.enable = false;
 
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
