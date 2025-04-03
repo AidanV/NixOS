@@ -49,6 +49,7 @@
     gnomeExtensions.gsconnect
     openocd
     docker
+    docker-compose
   ];
 
   dconf = {

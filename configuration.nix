@@ -71,11 +71,14 @@
 
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.virtualbox.host = {
-    enable = false;
-    enableKvm = true;
-    addNetworkInterface = false;
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+    virtualbox.host = {
+      enable = false;
+      enableKvm = true;
+      addNetworkInterface = false;
+    };
   };
   virtualisation.spiceUSBRedirection.enable = true;
 
@@ -177,6 +180,7 @@
       "wheel"
       "video"
       "libvirtd"
+      "docker"
     ];
     shell = pkgs.zsh;
   };
