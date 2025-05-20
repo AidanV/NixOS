@@ -206,6 +206,8 @@
     inputs.zen-browser.packages.x86_64-linux.specific
   ];
 
+  services.tailscale.enable = true;
+
   services.borgbackup.jobs.home-aidan =
     let
       common-excludes = [

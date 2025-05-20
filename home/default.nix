@@ -19,7 +19,7 @@
     opera
     neofetch
     # bitwarden
-    discord
+    vesktop
     swww
     pavucontrol
     libnotify
