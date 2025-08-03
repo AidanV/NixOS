@@ -8,6 +8,6 @@
     ./zsh
   ];
   home.sessionVariables = {
-    TERMINAL = "ghostty";
+    TERMINAL = "kitty";
   };
 }

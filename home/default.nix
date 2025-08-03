@@ -16,7 +16,6 @@
   home.packages = with pkgs; [
     ghostty
     firefox-wayland
-    opera
     neofetch
     # bitwarden
     vesktop
@@ -47,6 +46,7 @@
     gnome-calculator
     gnomeExtensions.blur-my-shell
     gnomeExtensions.gsconnect
+    gnomeExtensions.forge
     openocd
     docker
     docker-compose

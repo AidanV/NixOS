@@ -27,7 +27,7 @@
 
   # Bootloader
   boot = {
-    resumeDevice = "/dev/nvme0n1p7";
+    resumeDevice = "/dev/nvme0n1p3";
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
@@ -90,10 +90,10 @@
 
   services = {
     libinput.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
       xkb = {
         variant = "";
         layout = "us";
@@ -190,6 +190,7 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.gitFull
+    pkgs.jujutsu
     pkgs.wget
     pkgs.curl
     pkgs.helix
@@ -203,7 +204,6 @@
     pkgs.adwaita-icon-theme
     pkgs.nixfmt-rfc-style
     pkgs.polkit_gnome
-    inputs.zen-browser.packages.x86_64-linux.specific
   ];
 
   services.tailscale.enable = true;
