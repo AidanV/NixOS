@@ -8,12 +8,13 @@
     ./rofi
     ./git
     ./nixvim
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
 
   home.packages = with pkgs; [
+    claude-code
     ghostty
     firefox-wayland
     neofetch
@@ -48,6 +49,7 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.forge
     openocd
+    openconnect
     docker
     docker-compose
   ];

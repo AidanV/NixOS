@@ -47,7 +47,19 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-fortisslvpn
+      networkmanager-iodine
+      networkmanager-l2tp
+      networkmanager-openconnect
+      networkmanager-openvpn
+      networkmanager-sstp
+      networkmanager-strongswan
+      networkmanager-vpnc
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -67,7 +79,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      mesa
+    ];
+  };
 
   # possible background:  https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-nineish-dark-gray.png
 
@@ -102,6 +120,16 @@
     dbus.enable = true;
   };
 
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
+
   # Sound
   services.pipewire = {
     enable = true;
@@ -111,10 +139,10 @@
     wireplumber.enable = false;
   };
 
-  services.logind.extraConfig = ''
+  services.logind.settings.Login = {
     # don’t shutdown when power button is short-pressed
-    HandlePowerKey=ignore
-  '';
+    HandlePowerKey = "ignore";
+  };
 
   # Power
   services = {
@@ -204,6 +232,8 @@
     pkgs.adwaita-icon-theme
     pkgs.nixfmt-rfc-style
     pkgs.polkit_gnome
+    pkgs.vulkan-loader
+    pkgs.vulkan-tools
   ];
 
   services.tailscale.enable = true;
