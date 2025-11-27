@@ -5,7 +5,7 @@ in
 {
 
   programs.rofi = {
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     enable = true;
     plugins = [ pkgs.rofi-emoji ];
     theme = "${themePath}";

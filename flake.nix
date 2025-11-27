@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    weekly.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim = {
@@ -17,6 +18,7 @@
   outputs =
     inputs@{
       nixpkgs,
+      weekly,
       home-manager,
       nixvim,
       ...
@@ -27,6 +29,9 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
+            weekly-pkgs = import weekly {
+              system = "x86_64-linux";
+            };
           };
           modules = [
             ./configuration.nix
@@ -37,6 +42,9 @@
               home-manager.users.aidan = import ./home;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                weekly-pkgs = import weekly {
+                  system = "x86_64-linux";
+                };
               };
             }
             #inputs.home-manager.nixosModules.default

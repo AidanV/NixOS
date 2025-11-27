@@ -28,7 +28,7 @@
   # Bootloader
   boot = {
     resumeDevice = "/dev/nvme0n1p3";
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_16; # pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -124,9 +124,11 @@
     portal = {
       enable = true;
       extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
+      config.common.default = "gnome";
     };
   };
 
@@ -136,6 +138,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     jack.enable = true;
+    pulse.enable = true;
     wireplumber.enable = false;
   };
 
