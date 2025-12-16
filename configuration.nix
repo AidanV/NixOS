@@ -28,7 +28,7 @@
   # Bootloader
   boot = {
     resumeDevice = "/dev/nvme0n1p3";
-    kernelPackages = pkgs.linuxPackages_6_16; # pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -83,6 +83,8 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
+      intel-compute-runtime
+      libvdpau-va-gl
       mesa
     ];
   };
@@ -125,10 +127,7 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gnome
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
       ];
-      config.common.default = "gnome";
     };
   };
 
@@ -139,8 +138,10 @@
     alsa.support32Bit = true;
     jack.enable = true;
     pulse.enable = true;
-    wireplumber.enable = false;
+    wireplumber.enable = true;
   };
+
+  services.gnome.gnome-remote-desktop.enable = true;
 
   services.logind.settings.Login = {
     # don’t shutdown when power button is short-pressed
@@ -209,7 +210,9 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "audio"
       "video"
+      "render"
       "libvirtd"
       "docker"
     ];
@@ -237,6 +240,13 @@
     pkgs.polkit_gnome
     pkgs.vulkan-loader
     pkgs.vulkan-tools
+    pkgs.gst_all_1.gstreamer
+    pkgs.gst_all_1.gst-plugins-base
+    pkgs.gst_all_1.gst-plugins-good
+    pkgs.gst_all_1.gst-plugins-bad
+    pkgs.gst_all_1.gst-plugins-ugly
+    pkgs.gst_all_1.gst-vaapi
+    pkgs.gst_all_1.gst-libav
   ];
 
   services.tailscale.enable = true;
@@ -274,7 +284,7 @@
   environment.variables = {
     EDITOR = "vim";
     BROWSER = "zen";
-    GTK_USE_PORTAL=1;
+    GTK_USE_PORTAL = 1;
     TERMINAL = "ghostty";
     NIXOS_OZONE_WL = "1";
     XDG_SCREENSHOTS_DIR = "$HOME/Pictures/Screenshots";
@@ -284,8 +294,7 @@
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
-      noto-fonts-extra
+      noto-fonts-color-emoji
       fira-code
       font-awesome
       cantarell-fonts
@@ -293,13 +302,13 @@
     ];
     fontDir.enable = true;
   };
-      # nerd-fonts
-      # (nerdfonts.override {
-      #   fonts = [
-      #     "JetBrainsMono"
-      #     "Iosevka"
-      #   ];
-      # })
+  # nerd-fonts
+  # (nerdfonts.override {
+  #   fonts = [
+  #     "JetBrainsMono"
+  #     "Iosevka"
+  #   ];
+  # })
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {
   #   enable = true; enableSSHSupport = true;

@@ -35,9 +35,9 @@
           ];
         };
       };
-      cmp-nvim-lsp = {
-        enable = true;
-      }; # lsp
+      # cmp-nvim-lsp = {
+      #   enable = true;
+      # }; # lsp
       cmp_luasnip = {
         enable = true;
       }; # snippets
@@ -59,16 +59,10 @@
             installCargo = false;
             installRustc = false;
           };
-          nil_ls = {
-            enable = true;
-          };
           nimls = {
             enable = true;
           };
           gopls = {
-            enable = true;
-          };
-          ts_ls = {
             enable = true;
           };
           html = {

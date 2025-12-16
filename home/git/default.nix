@@ -2,9 +2,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "AidanV";
-    userEmail = "aidanvanduyne@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "AidanV";
+        email = "aidanvanduyne@gmail.com";
+      };
       credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
       pull.rebase = true;
       init.defaultBranch = "main";

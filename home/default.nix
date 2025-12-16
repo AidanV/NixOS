@@ -1,4 +1,9 @@
-{ pkgs, inputs, weekly-pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  weekly-pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -7,8 +12,8 @@
     ./lsp
     ./rofi
     ./git
-    ./nixvim
-    inputs.nixvim.homeModules.nixvim
+    # ./nixvim
+    # inputs.nixvim.homeModules.nixvim
   ];
   home.username = "aidan";
   home.homeDirectory = "/home/aidan";
@@ -16,8 +21,9 @@
   home.packages = with pkgs; [
     claude-code
     ghostty
-    firefox-wayland
+    firefox
     neofetch
+    neovim
     # bitwarden
     vesktop
     swww
