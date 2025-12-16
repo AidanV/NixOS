@@ -102,16 +102,19 @@
   };
   virtualisation.spiceUSBRedirection.enable = true;
 
-  programs.virt-manager.enable = true;
-
-  programs.dconf.enable = true;
-
-  programs.xwayland.enable = true;
+  programs = {
+    virt-manager.enable = true;
+    dconf.enable = true;
+    xwayland.enable = true;
+    zsh.enable = true;
+    steam.enable = true;
+    localsend.enable = true;
+    hyprland.enable = true;
+    gpu-screen-recorder.enable = true;
+  };
 
   services = {
     libinput.enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     xserver = {
       enable = true;
       xkb = {
@@ -119,17 +122,29 @@
         layout = "us";
       };
     };
+    displayManager.sddm = {
+      enable = true;
+      package = pkgs.kdePackages.sddm;
+      theme = "sddm-theme";
+      extraPackages = with pkgs; [
+        kdePackages.qtmultimedia
+        kdePackages.qtsvg
+        kdePackages.qtvirtualkeyboard
+      ];
+      wayland.enable = true;
+    };
+    power-profiles-daemon.enable = true;
     dbus.enable = true;
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-      ];
-    };
-  };
+  # xdg = {
+  #   portal = {
+  #     enable = true;
+  #     extraPortals = with pkgs; [
+  #       xdg-desktop-portal-gnome
+  #     ];
+  #   };
+  # };
 
   # Sound
   services.pipewire = {
@@ -141,8 +156,6 @@
     wireplumber.enable = true;
   };
 
-  services.gnome.gnome-remote-desktop.enable = true;
-
   services.logind.settings.Login = {
     # don’t shutdown when power button is short-pressed
     HandlePowerKey = "ignore";
@@ -152,18 +165,11 @@
   services = {
     upower.enable = true;
     thermald.enable = true;
-    # tlp = {
-    #   enable = true;
-    #   settings = {
-    #     CPU_BOOST_ON_AC = 1;
-    #     CPU_BOOST_ON_BAT = 0;
-    #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
-    #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    #     START_CHARGE_THRESH_BAT0 = 75;
-    #     STOP_CHARGE_THRESH_BAT0 = 80;
-    #   };
-    # };
   };
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="power_supply", KERNEL=="BAT0", ATTR{charge_control_end_threshold}="80"
+  '';
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -201,7 +207,6 @@
     pam.services.swaylock = { };
   };
 
-  programs.zsh.enable = true;
   environment.pathsToLink = [ "/share/zsh" ];
 
   users.users.aidan = {
@@ -237,16 +242,11 @@
     pkgs.unzip
     pkgs.adwaita-icon-theme
     pkgs.nixfmt-rfc-style
-    pkgs.polkit_gnome
     pkgs.vulkan-loader
     pkgs.vulkan-tools
-    pkgs.gst_all_1.gstreamer
-    pkgs.gst_all_1.gst-plugins-base
-    pkgs.gst_all_1.gst-plugins-good
-    pkgs.gst_all_1.gst-plugins-bad
-    pkgs.gst_all_1.gst-plugins-ugly
-    pkgs.gst_all_1.gst-vaapi
-    pkgs.gst_all_1.gst-libav
+    pkgs.mpv
+    pkgs.gpu-screen-recorder
+    pkgs.gpu-screen-recorder-gtk
   ];
 
   services.tailscale.enable = true;
@@ -318,9 +318,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  programs.steam.enable = true;
-  programs.localsend.enable = true;
 
   # Open ports in the firewall. networking.firewall.allowedTCPPorts = [ ... ]; networking.firewall.allowedUDPPorts = [ ... ]; Or disable the firewall altogether.
   # networking.firewall.enable = false;

@@ -12,6 +12,8 @@
     ./lsp
     ./rofi
     ./git
+    ./caelestia
+    ./hyprland
     # ./nixvim
     # inputs.nixvim.homeModules.nixvim
   ];
@@ -51,42 +53,14 @@
     gparted
     gnome-tweaks
     gnome-calculator
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.gsconnect
-    gnomeExtensions.forge
     openocd
     openconnect
     docker
     docker-compose
-    gst_all_1.gstreamer
-    gst_all_1.gst-plugins-base
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-ugly
-    gst_all_1.gst-libav
-    kooha
+    nautilus
   ];
 
-  dconf = {
-    enable = true;
-    settings."org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        blur-my-shell.extensionUuid
-        gsconnect.extensionUuid
-        battery-health-charging.extensionUuid
-      ];
-    };
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-
-  # gtk = {
-  #   enable = true;
-  #   cursorTheme = {
-  #     package = pkgs.bibata-cursors;
-  #     name = "bibata-modern-classic";
-  #   };
-  # };
+  dconf.enable = true;
 
   home.pointerCursor = {
     gtk.enable = true;

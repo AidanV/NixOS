@@ -13,6 +13,10 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,12 +25,16 @@
       weekly,
       home-manager,
       nixvim,
+      caelestia-shell,
       ...
     }:
+    let
+      system = "x86_64-linux";
+    in
     {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = {
             inherit inputs;
             weekly-pkgs = import weekly {
@@ -35,6 +43,14 @@
           };
           modules = [
             ./configuration.nix
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  caelestia-shell = caelestia-shell.packages.${system}.caelestia-shell;
+                  caelestia-cli = caelestia-shell.inputs.caelestia-cli.packages.${system}.caelestia-cli;
+                })
+              ];
+            }
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -43,7 +59,7 @@
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 weekly-pkgs = import weekly {
-                  system = "x86_64-linux";
+                  inherit system;
                 };
               };
             }
