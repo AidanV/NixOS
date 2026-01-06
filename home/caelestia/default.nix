@@ -13,4 +13,8 @@ in
     caelestia-shell
     caelestia-cli
   ];
+  home.file.".config/caelestia/shell.json" = {
+    source = ./shell.json;
+    recursive = true;
+  };
 }

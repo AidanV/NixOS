@@ -122,29 +122,25 @@
         layout = "us";
       };
     };
-    displayManager.sddm = {
-      enable = true;
-      package = pkgs.kdePackages.sddm;
-      theme = "sddm-theme";
-      extraPackages = with pkgs; [
-        kdePackages.qtmultimedia
-        kdePackages.qtsvg
-        kdePackages.qtvirtualkeyboard
-      ];
-      wayland.enable = true;
-    };
+    displayManager.ly.enable = true;
     power-profiles-daemon.enable = true;
     dbus.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
-  # xdg = {
-  #   portal = {
-  #     enable = true;
-  #     extraPortals = with pkgs; [
-  #       xdg-desktop-portal-gnome
-  #     ];
-  #   };
-  # };
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
+    };
+  };
 
   # Sound
   services.pipewire = {
@@ -226,27 +222,27 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.gitFull
-    pkgs.jujutsu
-    pkgs.wget
-    pkgs.curl
-    pkgs.helix
-    pkgs.ncdu
-    pkgs.brightnessctl
-    #pkgs.yazi
-    pkgs.wl-clipboard
-    pkgs.kanata
-    pkgs.borgbackup
-    pkgs.unzip
-    pkgs.adwaita-icon-theme
-    pkgs.nixfmt-rfc-style
-    pkgs.vulkan-loader
-    pkgs.vulkan-tools
-    pkgs.mpv
-    pkgs.gpu-screen-recorder
-    pkgs.gpu-screen-recorder-gtk
+  environment.systemPackages = with pkgs; [
+    vim
+    gitFull
+    jujutsu
+    wget
+    curl
+    helix
+    ncdu
+    brightnessctl
+    yazi
+    wl-clipboard
+    kanata
+    borgbackup
+    unzip
+    adwaita-icon-theme
+    nixfmt-rfc-style
+    vulkan-loader
+    vulkan-tools
+    mpv
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
   ];
 
   services.tailscale.enable = true;
