@@ -21,43 +21,45 @@
   home.homeDirectory = "/home/aidan";
 
   home.packages = with pkgs; [
-    claude-code
-    ghostty
-    firefox
-    neofetch
-    neovim
     # bitwarden
-    vesktop
-    swww
-    pavucontrol
-    libnotify
-    pika-backup
-    bibata-cursors
-    papirus-icon-theme
-    vscode
-    weekly-pkgs.zed-editor.fhs
-    emacs
-    beeper
-    # wayshot
-    # slurp
     # grim
-    grimblast
-    zoom-us
-    zathura
+    # slurp
+    # wayshot
+    beeper
+    bibata-cursors
     calc
-    htop-vim
-    pamixer
-    rofi-bluetooth
-    rofi-power-menu
-    quickemu
-    gparted
-    gnome-tweaks
-    gnome-calculator
-    openocd
-    openconnect
+    claude-code
     docker
     docker-compose
+    emacs
+    firefox
+    ghostty
+    gnome-calculator
+    gnome-tweaks
+    gparted
+    grimblast
+    htop-vim
+    hyprshot
+    libnotify
+    ltspice
     nautilus
+    neofetch
+    neovim
+    openconnect
+    openocd
+    pamixer
+    papirus-icon-theme
+    pavucontrol
+    pika-backup
+    quickemu
+    rofi-bluetooth
+    rofi-power-menu
+    swww
+    vesktop
+    vscode
+    weekly-pkgs.zed-editor.fhs
+    zathura
+    zoom-us
   ];
 
   dconf = {
@@ -68,7 +70,6 @@
       };
     };
   };
-
 
   home.pointerCursor = {
     gtk.enable = true;
