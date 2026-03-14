@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    weekly.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    zed.url = "github:zed-industries/zed";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim = {
@@ -22,7 +22,7 @@
   outputs =
     inputs@{
       nixpkgs,
-      weekly,
+      zed,
       home-manager,
       nixvim,
       caelestia-shell,
@@ -37,9 +37,6 @@
           inherit system;
           specialArgs = {
             inherit inputs;
-            weekly-pkgs = import weekly {
-              system = "x86_64-linux";
-            };
           };
           modules = [
             ./configuration.nix
@@ -58,9 +55,7 @@
               home-manager.users.aidan = import ./home;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
-                weekly-pkgs = import weekly {
-                  inherit system;
-                };
+                zed = inputs.zed;
               };
             }
             #inputs.home-manager.nixosModules.default

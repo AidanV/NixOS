@@ -237,7 +237,7 @@
     borgbackup
     unzip
     adwaita-icon-theme
-    nixfmt-rfc-style
+    nixfmt
     vulkan-loader
     vulkan-tools
     mpv

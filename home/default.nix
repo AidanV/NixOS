@@ -1,7 +1,7 @@
 {
   pkgs,
   inputs,
-  weekly-pkgs,
+  zed,
   ...
 }:
 
@@ -45,6 +45,7 @@
     nautilus
     neofetch
     neovim
+    ollama
     openconnect
     openocd
     pamixer
@@ -57,7 +58,7 @@
     swww
     vesktop
     vscode
-    weekly-pkgs.zed-editor.fhs
+    zed.packages.${pkgs.stdenv.hostPlatform.system}.default
     zathura
     zoom-us
   ];
