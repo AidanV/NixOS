@@ -197,6 +197,8 @@
     powerOnBoot = true;
   };
 
+  hardware.flipperzero.enable = true;
+
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -211,6 +213,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "dialout"
       "audio"
       "video"
       "render"

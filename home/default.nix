@@ -29,6 +29,8 @@
     bibata-cursors
     calc
     claude-code
+    codex-acp
+    codex
     docker
     docker-compose
     emacs
@@ -43,7 +45,7 @@
     libnotify
     ltspice
     nautilus
-    neofetch
+    fastfetch
     neovim
     ollama
     openconnect
@@ -55,7 +57,8 @@
     quickemu
     rofi-bluetooth
     rofi-power-menu
-    swww
+    awww
+    tree
     vesktop
     vscode
     zed.packages.${pkgs.stdenv.hostPlatform.system}.default

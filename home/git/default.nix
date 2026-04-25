@@ -11,5 +11,6 @@
       pull.rebase = true;
       init.defaultBranch = "main";
     };
+    signing.format = "openpgp";
   };
 }
