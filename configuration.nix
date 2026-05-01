@@ -165,6 +165,10 @@
 
   services.udev.extraRules = ''
     SUBSYSTEM=="power_supply", KERNEL=="BAT0", ATTR{charge_control_end_threshold}="80"
+    # Arduino
+    SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", GROUP="dialout", MODE="0660"
+    # CH340 clones
+    SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", GROUP="dialout", MODE="0660"
   '';
 
   # Enable CUPS to print documents.
