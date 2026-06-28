@@ -29,6 +29,7 @@
     bibata-cursors
     calc
     claude-code
+    claude-agent-acp
     codex-acp
     codex
     docker
@@ -55,6 +56,8 @@
     pavucontrol
     pika-backup
     quickemu
+    reaper
+    remmina
     rofi-bluetooth
     rofi-power-menu
     awww

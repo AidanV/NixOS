@@ -11,6 +11,7 @@
 
   # Flakes
   nix.settings = {
+    trusted-users = [ "root" "aidan" ];
     experimental-features = [
       "nix-command"
       "flakes"
@@ -103,14 +104,15 @@
   virtualisation.spiceUSBRedirection.enable = true;
 
   programs = {
-    virt-manager.enable = true;
     dconf.enable = true;
+    gpu-screen-recorder.enable = true;
+    hyprland.enable = true;
+    kdeconnect.enable = true;
+    localsend.enable = true;
+    steam.enable = true;
+    virt-manager.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
-    steam.enable = true;
-    localsend.enable = true;
-    hyprland.enable = true;
-    gpu-screen-recorder.enable = true;
   };
 
   services = {
@@ -129,6 +131,11 @@
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
+    };
+    linux-enable-ir-emitter.enable = true;
+    howdy = {
+      enable = true;
+      control = "sufficient";
     };
   };
 
@@ -207,6 +214,7 @@
     rtkit.enable = true;
     polkit.enable = true;
     pam.services.swaylock = { };
+    pam.howdy.enable = false;
   };
 
   environment.pathsToLink = [ "/share/zsh" ];

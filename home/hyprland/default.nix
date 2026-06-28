@@ -23,11 +23,14 @@
       '';
     };
 
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-        gtk-cursor-theme-name=Bibata-Modern-Classic
-      '';
+    gtk4 = {
+      theme = config.gtk.theme;
+      extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+          gtk-cursor-theme-name=Bibata-Modern-Classic
+        '';
+      };
     };
   };
 
